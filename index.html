@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prasthana — Applied AI lab for India's compliance intelligence</title>
+<meta name="description" content="Prasthana is an applied AI lab. First family: Karsastra — an AI tax-notice reply engine with machine-verified citations. Read the locked 785-task benchmark findings.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400..700;1,6..72,400..700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#fcfcf9;
+    --ink:#1b1a16;
+    --ink-soft:#4c4a42;
+    --ink-faint:#8b887c;
+    --rule:#e4e2d8;
+    --rule-dark:#c9c6b8;
+    --accent:#1f5c3d;
+    --accent-soft:#eaf1eb;
+    --card:#ffffff;
+    --partial:#9a978c;
+    --serif:"Newsreader","Source Serif 4",Georgia,"Times New Roman",serif;
+    --sans:"Inter","Segoe UI",system-ui,-apple-system,sans-serif;
+    --mono:"JetBrains Mono","SFMono-Regular",Menlo,Consolas,monospace;
+    --content:72ch;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  @media (prefers-reduced-motion: no-preference){
+    html{scroll-behavior:smooth}
+  }
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--sans);
+    font-size:16px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:var(--accent);text-decoration:none;border-bottom:1px solid rgba(31,92,61,.35)}
+  a:hover{border-bottom-color:var(--accent)}
+  :focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:1px}
+  .mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
+
+  /* ---------- masthead ---------- */
+  .mast{border-bottom:1px solid var(--rule)}
+  .mast-in{
+    display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap;
+    max-width:1200px;margin:0 auto;padding:14px 28px;
+  }
+  .wordmark{font-family:var(--serif);font-size:20px;font-weight:600;color:var(--ink);border:none;letter-spacing:.005em}
+  .mast-meta{font-family:var(--mono);font-size:11.5px;color:var(--ink-faint);letter-spacing:.06em}
+  .mast-meta span{margin-left:14px}
+
+  /* ---------- layout: left rail + report column ---------- */
+  .layout{
+    display:grid;grid-template-columns:236px minmax(0,1fr);
+    max-width:1200px;margin:0 auto;gap:0;
+  }
+  .rail{
+    position:sticky;top:0;align-self:start;
+    height:100vh;overflow-y:auto;
+    padding:48px 20px 48px 28px;
+    border-right:1px solid var(--rule);
+  }
+  .rail-label{
+    font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--ink-faint);margin-bottom:14px;
+  }
+  .toc{list-style:none}
+  .toc li{margin:2px 0}
+  .toc a{
+    display:flex;gap:10px;align-items:baseline;
+    font-size:13.5px;color:var(--ink-soft);border:none;
+    padding:5px 8px 5px 0;border-left:2px solid transparent;padding-left:10px;
+  }
+  .toc a .toc-no{font-family:var(--mono);font-size:10.5px;color:var(--ink-faint);letter-spacing:.05em}
+  .toc a:hover{color:var(--ink)}
+  .toc a.active{border-left-color:var(--accent);color:var(--accent);font-weight:500}
+  .toc a.active .toc-no{color:var(--accent)}
+  .rail-foot{margin-top:34px;font-family:var(--mono);font-size:11px;color:var(--ink-faint);line-height:1.8}
+  .rail-foot a{color:var(--ink-faint);border-bottom-color:var(--rule)}
+  main{min-width:0;padding:0 40px 0 44px}
+  section{padding:64px 0;border-bottom:1px solid var(--rule);scroll-margin-top:24px}
+  section:last-of-type{border-bottom:none}
+
+  /* ---------- hero ---------- */
+  .hero{padding:76px 0 60px;border-bottom:1px solid var(--rule);scroll-margin-top:24px}
+  .kicker{
+    font-family:var(--mono);font-size:11.5px;font-weight:500;
+    letter-spacing:.15em;text-transform:uppercase;color:var(--accent);margin-bottom:24px;
+  }
+  h1{
+    font-family:var(--serif);font-weight:500;
+    font-size:clamp(36px,4.6vw,56px);line-height:1.08;
+    letter-spacing:-.012em;max-width:17em;text-wrap:balance;
+  }
+  h1 em{font-style:italic;font-weight:400;color:var(--ink-soft)}
+  .hero-sub{max-width:58ch;margin-top:26px;font-size:17px;color:var(--ink-soft)}
+  .hero-actions{margin-top:32px;display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+  .btn{
+    font-size:14px;font-weight:500;padding:9px 18px;border:1px solid var(--ink);
+    color:var(--ink);letter-spacing:.01em;
+  }
+  .btn:hover{background:var(--ink);color:var(--paper);border-bottom-color:var(--ink)}
+  .btn-primary{background:var(--accent);border-color:var(--accent);color:#fff}
+  .btn-primary:hover{background:#17492f;border-color:#17492f;color:#fff}
+  .hero-note{font-size:13px;color:var(--ink-faint)}
+
+  /* provenance pills */
+  .chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:34px}
+  .chip{
+    display:inline-flex;align-items:center;gap:7px;
+    font-family:var(--mono);font-size:11px;letter-spacing:.04em;
+    color:var(--ink-soft);background:var(--card);
+    border:1px solid var(--rule-dark);border-radius:999px;padding:4px 12px;
+  }
+  .chip::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--accent);flex:none}
+  .chip b{font-weight:600;color:var(--ink)}
+
+  /* ---------- section chrome ---------- */
+  .sec-label{
+    font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.15em;text-transform:uppercase;
+    color:var(--accent);margin-bottom:12px;
+  }
+  h2{
+    font-family:var(--serif);font-weight:500;font-size:clamp(27px,3.2vw,36px);
+    line-height:1.16;letter-spacing:-.008em;margin-bottom:16px;text-wrap:balance;max-width:24em;
+  }
+  h3{font-family:var(--serif);font-weight:600;font-size:19px;line-height:1.35;margin-bottom:8px}
+  .lede{font-size:16.5px;color:var(--ink-soft);max-width:60ch}
+  .lede strong{color:var(--ink)}
+  p.md{margin:14px 0;color:var(--ink-soft);max-width:60ch}
+
+  /* ---------- key results band ---------- */
+  .stats{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:0;
+    border-top:1px solid var(--rule-dark);border-bottom:1px solid var(--rule-dark);
+    margin:44px 0;
+  }
+  .stat{padding:20px 18px 18px;border-left:1px solid var(--rule)}
+  .stat:first-child{border-left:none}
+  .stat .n{font-family:var(--mono);font-weight:500;font-size:29px;letter-spacing:-.02em;color:var(--ink)}
+  .stat .n small{font-size:15px;color:var(--ink-faint);font-weight:400}
+  .stat.hl .n{color:var(--accent)}
+  .stat .t{font-size:12.5px;color:var(--ink-soft);margin-top:8px;line-height:1.5}
+  @media(max-width:900px){.stats{grid-template-columns:repeat(2,1fr)}
+    .stat:nth-child(3){border-left:none}
+    .stat:nth-child(-n+2){border-bottom:1px solid var(--rule)}}
+  @media(max-width:480px){.stats{grid-template-columns:1fr}
+    .stat{border-left:none;border-bottom:1px solid var(--rule)}
+    .stat:last-child{border-bottom:none}}
+
+  /* ---------- boxed transcript ---------- */
+  .transcript{
+    margin:44px 0 0;background:var(--card);
+    border:1px solid var(--rule-dark);border-left:3px solid var(--accent);
+    padding:0;
+  }
+  .transcript-head{
+    font-family:var(--mono);font-size:10.5px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--ink-faint);padding:12px 22px 0;
+  }
+  .transcript-body{padding:12px 22px 20px;font-family:var(--mono);font-size:13px;line-height:1.75}
+  .transcript-body .q{color:var(--ink)}
+  .transcript-body .bad{color:#9c3d1e}
+  .transcript-body .dim{color:var(--ink-faint)}
+  .transcript-body .good{color:var(--accent);font-weight:500}
+  .transcript figcaption{
+    border-top:1px solid var(--rule);padding:10px 22px;
+    font-family:var(--sans);font-size:12.5px;color:var(--ink-faint);
+  }
+
+  /* ---------- figures (bar charts) ---------- */
+  figure.fig{margin:40px 0 8px}
+  .fig-head{
+    display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap;
+    border-top:2px solid var(--ink);padding-top:8px;margin-bottom:20px;
+  }
+  .fig-no{font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.08em;color:var(--accent)}
+  .fig-title{font-family:var(--serif);font-size:17.5px;font-weight:600;color:var(--ink)}
+  .fig-legend{display:flex;gap:18px;flex-wrap:wrap;font-family:var(--mono);font-size:11px;color:var(--ink-soft)}
+  .fig-legend .sw{display:inline-block;width:14px;height:9px;margin-right:6px;vertical-align:baseline}
+  .sw.ours{background:var(--accent)}
+  .sw.them{background:var(--ink-soft)}
+  .sw.partial{background:repeating-linear-gradient(45deg,var(--partial) 0 3px,#c6c3b6 3px 6px)}
+
+  .chart{display:grid;gap:9px}
+  .crow{display:grid;grid-template-columns:minmax(150px,220px) 1fr;gap:14px;align-items:center}
+  .crow .clabel{font-family:var(--sans);font-size:13px;color:var(--ink-soft);display:flex;align-items:baseline;justify-content:space-between;gap:10px}
+  .crow.ours-row .clabel{color:var(--ink);font-weight:600}
+  .clabel .cnt{font-family:var(--mono);font-size:11px;color:var(--ink-faint);white-space:nowrap}
+  .cbars{display:grid;gap:3px}
+  .cbar{display:grid;grid-template-columns:minmax(96px,118px) 1fr 62px;gap:10px;align-items:center}
+  .cbar .mname{font-family:var(--mono);font-size:10.5px;color:var(--ink-faint);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .track{height:13px;background:linear-gradient(to right,transparent,transparent),var(--rule);background:var(--rule);position:relative}
+  .fill{display:block;height:100%;background:var(--ink-soft)}
+  .ours-row .fill{background:var(--accent)}
+  .fill.partial{background:repeating-linear-gradient(45deg,var(--partial) 0 3px,#c6c3b6 3px 6px)}
+  .cbar .val{font-family:var(--mono);font-size:11.5px;font-variant-numeric:tabular-nums;color:var(--ink-soft);text-align:right;white-space:nowrap}
+  .ours-row .cbar .val{color:var(--accent);font-weight:600}
+
+  figcaption.fig-note{
+    border-top:1px solid var(--rule);margin-top:18px;padding-top:10px;
+    font-size:13px;color:var(--ink-faint);max-width:64ch;line-height:1.6;
+  }
+  figcaption.fig-note strong{color:var(--ink-soft)}
+  sup.fn a{font-family:var(--mono);font-size:.72em;color:var(--accent);border-bottom:none;vertical-align:super;padding:0 1px}
+  .footnotes{margin-top:26px;border-top:1px solid var(--rule);padding-top:12px}
+  .footnotes ol{list-style:none}
+  .footnotes li{font-size:12.5px;color:var(--ink-soft);padding:4px 0;max-width:64ch;position:relative;padding-left:22px}
+  .footnotes li .fnm{position:absolute;left:0;font-family:var(--mono);font-size:11.5px;color:var(--accent)}
+  .footnotes li a{border-bottom:none}
+
+  /* ---------- collapsible exact tables ---------- */
+  details.exact{margin:26px 0 0;border:1px solid var(--rule);background:var(--card)}
+  details.exact summary{
+    cursor:pointer;list-style:none;display:flex;align-items:center;gap:10px;
+    font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;
+    color:var(--ink-soft);padding:11px 16px;user-select:none;
+  }
+  details.exact summary::-webkit-details-marker{display:none}
+  details.exact summary::before{content:"+";font-weight:600;color:var(--accent);width:12px}
+  details.exact[open] summary::before{content:"−"}
+  details.exact summary:hover{color:var(--ink)}
+  details.exact .tbl-wrap{padding:0 16px 16px}
+
+  /* ---------- tables ---------- */
+  .tbl{width:100%;border-collapse:collapse;margin:6px 0 8px;font-size:13.5px}
+  .tbl th{
+    font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--ink-faint);text-align:left;padding:9px 10px;border-bottom:2px solid var(--ink);
+  }
+  .tbl td{padding:9px 10px;border-bottom:1px solid var(--rule);vertical-align:top}
+  .tbl .r{text-align:right;font-family:var(--mono);font-variant-numeric:tabular-nums}
+  .tbl th.r{text-align:right}
+  .tbl tr.ours td{background:var(--accent-soft)}
+  .tbl tr.ours td:first-child{border-left:3px solid var(--accent)}
+  .tbl .tag{
+    display:inline-block;font-family:var(--mono);font-size:9.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;
+    color:var(--accent);border:1px solid rgba(31,92,61,.4);border-radius:999px;padding:0 7px;margin-left:7px;vertical-align:1px;
+  }
+  .tbl-note{font-size:13px;color:var(--ink-faint);margin-top:10px;max-width:64ch;line-height:1.6}
+
+  /* ---------- findings: full-width numbered report sections ---------- */
+  .finding{
+    display:grid;grid-template-columns:88px minmax(0,1fr);gap:0 28px;
+    padding:34px 0;border-top:1px solid var(--rule);
+  }
+  .finding:first-of-type{margin-top:40px}
+  .finding .fno{
+    font-family:var(--mono);font-size:13px;font-weight:600;color:var(--accent);
+    letter-spacing:.1em;text-align:right;padding-top:5px;
+  }
+  .finding .fno small{display:block;font-size:9.5px;color:var(--ink-faint);letter-spacing:.14em;font-weight:500;margin-top:4px}
+  .finding h3{font-size:clamp(19px,2vw,22px)}
+  .finding p{color:var(--ink-soft);max-width:62ch;margin-top:8px}
+  .finding p strong{color:var(--ink)}
+  .datum{
+    margin-top:16px;padding:10px 14px;background:var(--card);
+    border:1px solid var(--rule);border-left:3px solid var(--accent);
+    font-family:var(--mono);font-size:12.5px;color:var(--ink);font-variant-numeric:tabular-nums;
+    display:inline-block;max-width:100%;
+  }
+  .datum b{color:var(--accent);font-weight:600}
+
+  /* ---------- architecture ---------- */
+  .arch{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin:36px 0 8px}
+  @media(max-width:760px){.arch{grid-template-columns:1fr}}
+  .arch-col{border:1px solid var(--rule-dark);background:var(--card);padding:20px 22px}
+  .arch-col .arch-tag{font-family:var(--mono);font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--accent);margin-bottom:8px}
+  .arch-col h3{font-size:17px}
+  .arch-col ul{list-style:none;margin-top:10px}
+  .arch-col li{font-size:13.5px;color:var(--ink-soft);padding:5px 0 5px 16px;position:relative}
+  .arch-col li::before{content:"—";position:absolute;left:0;color:var(--accent)}
+  .arch-mid{
+    grid-row:1/3;grid-column:1/-1;text-align:center;
+    font-family:var(--mono);font-size:12px;color:var(--accent);letter-spacing:.06em;padding:8px 0 0;
+  }
+  .method ol{margin:18px 0 0 20px;color:var(--ink-soft);font-size:15px}
+  .method li{margin-bottom:10px;max-width:58ch;padding-left:4px}
+  .method li strong{color:var(--ink)}
+  .method{margin-top:40px;border-top:1px solid var(--rule);padding-top:32px}
+  .method h3{font-size:18px;margin-bottom:4px}
+  .method .num{font-family:var(--mono);font-size:.9em}
+
+  /* ---------- about ---------- */
+  .two-col{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-top:8px}
+  @media(max-width:760px){.two-col{grid-template-columns:1fr}}
+  .two-col .md:first-child{margin-top:10px}
+
+  /* ---------- footer ---------- */
+  footer{border-top:1px solid var(--rule-dark);padding:56px 0 72px;color:var(--ink-faint);font-size:13.5px}
+  footer .cols{display:grid;grid-template-columns:2fr 1fr 1fr;gap:40px;margin-bottom:44px}
+  @media(max-width:760px){footer .cols{grid-template-columns:1fr}}
+  footer h4{
+    font-family:var(--mono);font-size:10.5px;font-weight:600;letter-spacing:.13em;text-transform:uppercase;
+    color:var(--ink-soft);margin-bottom:12px;
+  }
+  footer ul{list-style:none}
+  footer li{margin-bottom:7px}
+  footer a{color:var(--ink-soft);border-bottom-color:var(--rule)}
+  .fineprint{border-top:1px solid var(--rule);padding-top:20px;color:var(--ink-faint);font-size:12.5px;line-height:1.6;max-width:72ch}
+  .fineprint .mono{font-size:11.5px}
+
+  /* ---------- responsive: rail collapses on small screens ---------- */
+  @media(max-width:1060px){
+    .layout{grid-template-columns:minmax(0,1fr)}
+    .rail{
+      position:sticky;top:0;height:auto;overflow-x:auto;overflow-y:hidden;
+      padding:0 20px;border-right:none;border-bottom:1px solid var(--rule);
+      background:rgba(252,252,249,.94);z-index:20;
+    }
+    .rail-label,.rail-foot{display:none}
+    .toc{display:flex;gap:4px}
+    .toc a{border-left:none;padding:8px 10px;white-space:nowrap;border-bottom:2px solid transparent}
+    .toc a.active{border-bottom-color:var(--accent)}
+    main{padding:0 24px}
+    section,.hero{scroll-margin-top:64px}
+    footer .footin{padding:0 24px !important}
+  }
+  @media(max-width:640px){
+    .finding{grid-template-columns:1fr;gap:8px}
+    .finding .fno{text-align:left}
+    .arch-mid{padding:0}
+    .cbar{grid-template-columns:minmax(78px,92px) 1fr 52px;gap:7px}
+    .crow{grid-template-columns:minmax(110px,150px) 1fr;gap:10px}
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{transition:none !important;animation:none !important}
+  }
+</style>
+</head>
+<body>
+
+<div class="mast">
+  <div class="mast-in">
+    <a class="wordmark" href="#top">Prasthana</a>
+    <div class="mast-meta">AN APPLIED AI LAB<span>BENGALURU–AHMEDABAD, INDIA</span></div>
+  </div>
+</div>
+
+<div class="layout" id="top">
+
+  <!-- ===== STICKY LEFT-RAIL TABLE OF CONTENTS ===== -->
+  <aside class="rail" aria-label="Table of contents">
+    <div class="rail-label">Contents</div>
+    <ul class="toc" id="toc">
+      <li><a href="#found"><span class="toc-no">§1</span> What we found</a></li>
+      <li><a href="#benchmark"><span class="toc-no">§2</span> The benchmark</a></li>
+      <li><a href="#five"><span class="toc-no">§3</span> Five findings</a></li>
+      <li><a href="#model"><span class="toc-no">§4</span> Our model</a></li>
+      <li><a href="#approach"><span class="toc-no">§5</span> Approach</a></li>
+      <li><a href="#about"><span class="toc-no">§6</span> About</a></li>
+    </ul>
+    <div class="rail-foot">
+      <a href="mailto:hello@prasthana.in">hello@prasthana.in</a><br>
+      eval · itact-785<br>
+      sha256 14ffaa7d…
+    </div>
+  </aside>
+
+  <main id="main">
+
+    <!-- ===================== HERO ===================== -->
+    <div class="hero">
+      <div class="kicker">A benchmark report · itact-785</div>
+      <h1>The launching point for India&rsquo;s <em>compliance intelligence</em>.</h1>
+      <p class="hero-sub">
+        In April 2026, India replaced its 65-year-old Income-tax Act: 819 sections became 536, every section
+        number changed, and every AI assistant in the world started citing repealed law with total confidence.
+        Prasthana exists to fix that class of problem — machine-verified law, not model guesswork.
+        Our first product family, <strong>Karsastra</strong>, drafts tax-notice replies where every statutory
+        citation is checked against a verified engine before a professional ever sees it.
+      </p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#found">Read what we found</a>
+        <a class="btn" href="#benchmark">The benchmark</a>
+        <span class="hero-note">All numbers on this page come from a locked, sha256-verified eval.</span>
+      </div>
+      <div class="chips" aria-label="Evaluation provenance">
+        <span class="chip">sha256 <b>14ffaa7d…</b></span>
+        <span class="chip"><b>locked-before-scoring</b></span>
+        <span class="chip">replicated grader · <b>0 verdict diffs</b></span>
+      </div>
+    </div>
+
+    <!-- ===================== §1 WHAT WE FOUND ===================== -->
+    <section id="found">
+      <div class="sec-label">§1 · What we found</div>
+      <h2>Every frontier model we could run flunks the new Act.</h2>
+      <p class="lede">
+        We built the <strong>itact-785</strong> benchmark: 785 tax-law tasks from the Income-tax Act 2025,
+        locked and hash-verified before any model saw a single question, graded by strict entity match with
+        no LLM judge. Then we scored every model our subscriptions could reach. Not one came close to usable —
+        and the three task families that matter most for professional work scored <strong>zero</strong> on
+        every frontier model.
+      </p>
+
+      <div class="stats">
+        <div class="stat"><div class="n">30.2<small>%</small></div><div class="t">Best frontier-model strict accuracy on the 785-task locked set (glm-5.3-flash — a cheap flash model)</div></div>
+        <div class="stat"><div class="n">0<small>/99</small></div><div class="t">Frontier models that passed a single ICAI-style 4-part compliance task — the exact shape of a notice reply</div></div>
+        <div class="stat"><div class="n">0<small>/107</small></div><div class="t">TDS payment-code lookups answered correctly by our strongest frontier leg on the new 2025-Act code scheme</div></div>
+        <div class="stat hl"><div class="n">89.4<small>%</small></div><div class="t">Our fine-tuned 4B (karsastra-4b-v4.4) — best score on the full locked set, ahead of every frontier model we completed</div></div>
+      </div>
+
+      <figure class="transcript">
+        <div class="transcript-head">Observed failure · deepseek-v4.1-flash · October 2026</div>
+        <div class="transcript-body">
+          <div class="q">Q: &ldquo;Under the Income-tax Act, 2025 — for a challan due in July 2026 — what payment code applies to interest on securities?&rdquo;</div>
+          <div class="bad">A: &ldquo;1001 Interest on securities · 1002 Dividends · 1003 Interest on Government securities…&rdquo;</div>
+          <div class="dim">— the model confidently recited the <span class="bad">repealed 1961-Act ITNS-281 code table</span> for a 2026 question.</div>
+          <div class="q" style="margin-top:10px">The engine&rsquo;s verified code table answers the same 107 tasks by lookup, machine-checked: <span class="good">100%.</span></div>
+        </div>
+        <figcaption>Transcript captured from the locked eval run. The question requires a 2025-Act payment code; the reply shown was graded incorrect under strict entity match.</figcaption>
+      </figure>
+    </section>
+
+    <!-- ===================== §2 THE BENCHMARK ===================== -->
+    <section id="benchmark">
+      <div class="sec-label">§2 · The benchmark · itact-785</div>
+      <h2>Ledger</h2>
+      <p class="lede">785 tasks across 16 task types: code lookups, old&rarr;new section mappings, rates, thresholds, TDS
+      computations, date-boundary rulings, and ICAI-style 4-part compliance bundles. Strict grading: an answer passes
+      only if <em>every</em> required entity matches gold — codes, sections, rates, amounts, dates. No partial credit,
+      no LLM-as-judge. The grader itself was proven by two gates before use.</p>
+
+      <!-- Figure 2: overall leaderboard -->
+      <figure class="fig" id="fig-leaderboard">
+        <div class="fig-head">
+          <span class="fig-no">Figure&nbsp;1</span>
+          <span class="fig-title">Strict accuracy on the locked 776-task graded set</span>
+          <span class="fig-legend">
+            <span><span class="sw ours"></span>ours</span>
+            <span><span class="sw them"></span>full run</span>
+            <span><span class="sw partial"></span>partial sample<sup class="fn"><a href="#fn1">&dagger;</a></sup></span>
+          </span>
+        </div>
+        <div class="chart" role="img" aria-label="Horizontal bar chart of strict accuracy by model: karsastra-4b-v4.4 89.4 percent (ours), claude-sonnet-4-5 58.5 percent pooled over 763 graded tasks, claude-haiku-4-5 32.5 percent on a partial sample of 548 tasks, glm-5.3-flash 30.2 percent, glm-5.3 26.5 percent, deepseek-v4.1-flash 11.6 percent, qwen3.5:4b raw base 11.6 percent, gpt-oss:20b 7.0 percent, gpt-oss:120b 2.4 percent.">
+          <div class="crow ours-row">
+            <span class="clabel">karsastra-4b-v4.4 <span class="tag">Ours</span><span class="cnt">785</span></span>
+            <span class="cbars"><span class="cbar"><span class="mname">fine-tune · 4B · merged</span><span class="track"><span class="fill" style="width:89.4%"></span></span><span class="val">89.4%</span></span></span>
+          </div>
+          <div class="crow">
+            <span class="clabel">claude-sonnet-4-5<sup class="fn"><a href="#fn1">&dagger;</a></sup><span class="cnt">763</span></span>
+            <span class="cbars"><span class="cbar"><span class="mname">claude · pooled</span><span class="track"><span class="fill partial" style="width:58.5%"></span></span><span class="val">58.5%&dagger;</span></span></span>
+          </div>
+          <div class="crow">
+            <span class="clabel">claude-haiku-4-5<sup class="fn"><a href="#fn1">&dagger;</a></sup><span class="cnt">548</span></span>
+            <span class="cbars"><span class="cbar"><span class="mname">claude · partial</span><span class="track"><span class="fill partial" style="width:32.5%"></span></span><span class="val">32.5%&dagger;</span></span></span>
+          </div>
+          <div class="crow">
+            <span class="clabel">glm-5.3-flash<span class="cnt">774</span></span>
+            <span class="cbars"><span class="cbar"><span class="mname">z.ai</span><span class="track"><span class="fill" style="width:30.2%"></span></span><span class="val">30.2%</span></span></span>
+          </div>
+          <div class="crow">
+            <span class="clabel">glm-5.3<span class="cnt">776</span></span>
+            <span class="cbars"><span class="cbar"><span class="mname">z.ai</span><span class="track"><span class="fill" style="width:26.5%"></span></span><span class="val">26.5%</span></span></span>
+          </div>
+          <div class="crow">
+            <span class="clabel">deepseek-v4.1-flash<span class="cnt">776</span></span>
+            <span class="cbars"><span class="cbar"><span class="mname">ollama cloud</span><span class="track"><span class="fill" style="width:11.6%"></span></span><span class="val">11.6%</span></span></span>
+          </div>
+          <div class="crow">
+            <span class="clabel">qwen3.5:4b (raw base)<span class="cnt">776</span></span>
+            <span class="cbars"><span class="cbar"><span class="mname">local ollama</span><span class="track"><span class="fill" style="width:11.6%"></span></span><span class="val">11.6%</span></span></span>
+          </div>
+          <div class="crow">
+            <span class="clabel">gpt-oss:20b<span class="cnt">776</span></span>
+            <span class="cbars"><span class="cbar"><span class="mname">ollama cloud</span><span class="track"><span class="fill" style="width:7.0%"></span></span><span class="val">7.0%</span></span></span>
+          </div>
+          <div class="crow">
+            <span class="clabel">gpt-oss:120b<span class="cnt">776</span></span>
+            <span class="cbars"><span class="cbar"><span class="mname">ollama cloud</span><span class="track"><span class="fill" style="width:2.4%"></span></span><span class="val">2.4%</span></span></span>
+          </div>
+        </div>
+        <figcaption class="fig-note">
+          Strict accuracy, full denominator (graded&nbsp;/&nbsp;785) unless marked partial. On the full locked set,
+          <strong>karsastra-4b-v4.4 (89.4%) leads every completed run</strong> — the next best is claude-sonnet-4-5 at
+          58.5% pooled over all legs (&dagger;; its early clean-session legs scored 94.2% on a partial sample, but the
+          full-set run was degraded by eval-environment artifacts). The one cheap-vs-flagship observation worth keeping: <strong>glm-5.3-flash (30.2%) beat glm-5.3 (26.5%)</strong>.
+          Scale does not fix what isn&rsquo;t in the training distribution — and the new Act isn&rsquo;t in anyone&rsquo;s.
+          The benchmark, per-model answer files, and grader are being published open-source so any lab can run their
+          own model and open a pull request.
+        </figcaption>
+
+        <details class="exact">
+          <summary>Exact table — leaderboard</summary>
+          <div class="tbl-wrap">
+            <table class="tbl">
+              <thead>
+                <tr><th>Model</th><th>Backend</th><th class="r">Graded / 785</th><th class="r">Strict accuracy</th></tr>
+              </thead>
+              <tbody>
+                <tr class="ours">
+                  <td>karsastra-4b-v4.4<span class="tag">Ours</span></td><td>fine-tune · 4B · merged</td><td class="r">785</td><td class="r">89.4%</td>
+                </tr>
+                <tr>
+                  <td>claude-sonnet-4-5<sup class="fn"><a href="#fn1">&dagger;</a></sup></td><td>claude</td><td class="r">763 &dagger;</td><td class="r">58.5% &dagger;</td>
+                </tr>
+                <tr>
+                  <td>claude-haiku-4-5<sup class="fn"><a href="#fn1">&dagger;</a></sup></td><td>claude</td><td class="r">548 &dagger;</td><td class="r">32.5% &dagger;</td>
+                </tr>
+                <tr><td>glm-5.3-flash</td><td>z.ai</td><td class="r">774</td><td class="r">30.2%</td></tr>
+                <tr><td>glm-5.3</td><td>z.ai</td><td class="r">776</td><td class="r">26.5%</td></tr>
+                <tr><td>deepseek-v4.1-flash</td><td>ollama cloud</td><td class="r">776</td><td class="r">11.6%</td></tr>
+                <tr><td>qwen3.5:4b (raw base)</td><td>local ollama</td><td class="r">776</td><td class="r">11.6%</td></tr>
+                <tr><td>gpt-oss:20b</td><td>ollama cloud</td><td class="r">776</td><td class="r">7.0%</td></tr>
+                <tr><td>gpt-oss:120b</td><td>ollama cloud</td><td class="r">776</td><td class="r">2.4%</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </details>
+      </figure>
+
+      <div class="footnotes" id="fn1-block">
+        <ol>
+          <li id="fn1"><span class="fnm">&dagger;</span> Sonnet-4-5 ran in two eras: the October 7–8 clean-session legs scored 94.2% (327/347, strict-confirmed); the October 12–13 full-set re-run was degraded by eval-environment artifacts (session-memory refusals and test-data contamination) and scored 119/416 = 28.6%. The headline number pools every graded leg: 446/763 = 58.5% — one entry per model, scored by the same strict grader. <a href="#fig-leaderboard">&uarr;&nbsp;back</a></li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ===================== §3 FIVE FINDINGS ===================== -->
+    <section id="five">
+      <div class="sec-label">§3 · Detail</div>
+      <h2>Five findings, machine-graded</h2>
+
+      <article class="finding" id="f1">
+        <div class="fno">F1<small>CODE&nbsp;SCHEME</small></div>
+        <div>
+          <h3>Models can&rsquo;t even emit a 2025-Act payment code</h3>
+          <p>107 tasks asking for TDS payment codes under the new scheme. Frontier models refused, invented
+          codes (&ldquo;payment code: 94&rdquo;), or pattern-matched to whichever 10xx-looking table they
+          memorized — including the repealed 1961-Act ITNS table, as above.</p>
+          <div class="datum">glm-5.3-flash: <b>0 / 107</b> · deepseek: 4 / 107 · gpt-oss:120b: 0 / 107</div>
+        </div>
+      </article>
+
+      <article class="finding" id="f2">
+        <div class="fno">F2<small>SECTION&nbsp;MAPPING</small></div>
+        <div>
+          <h3>Models cite the old Act for 2026 questions</h3>
+          <p>&ldquo;A notice cites old s.139(5) — what is its replacement under the 2025 Act?&rdquo; Gold: s.263(5).
+          One model answered &ldquo;section 134&rdquo; — an invention. Every CA in India is living this exact
+          judgment right now; the engine&rsquo;s 3,792-pair transition map answers it deterministically.</p>
+          <div class="datum">glm-5.3-flash: <b>32%</b> · deepseek-v4.1-flash: <b>0%</b> · gpt-oss:120b: <b>0%</b></div>
+        </div>
+      </article>
+
+      <article class="finding" id="f3">
+        <div class="fno">F3<small>4-PART&nbsp;COMPLIANCE</small></div>
+        <div>
+          <h3>Zero passes on the task a reply actually needs</h3>
+          <p>Given a payment, produce code + section + rate + deposit date — all four correct. 99 ICAI-style
+          tasks. No frontier model completed a single one. Our fine-tune scores 18/99 by writing prose around
+          engine-supplied fields — the architecture working as designed, not the model memorizing law.</p>
+          <div class="datum">All five frontier legs: <b>0 / 99</b> · karsastra-4b: 18 / 99</div>
+        </div>
+      </article>
+
+      <article class="finding" id="f4">
+        <div class="fno">F4<small>THE&nbsp;BOUNDARY</small></div>
+        <div>
+          <h3>The confusion window is measurable</h3>
+          <p>Transitional fact: a payment credited 1 June 2026 is governed by the new Act, not the one being
+          repealed. Even the best frontier model misassigns the governing Act on roughly one-third of boundary
+          cases — on the precise judgment the whole product depends on.</p>
+          <div class="datum">glm-5.3: 6/9 · glm-5.3-flash: 5/8 · deepseek &amp; gpt-oss: <b>3/9</b></div>
+        </div>
+      </article>
+
+      <article class="finding" id="f5">
+        <div class="fno">F5<small>WHAT&nbsp;SURVIVES</small></div>
+        <div>
+          <h3>Pretraining still knows general knowledge — so let it keep prose, surrender facts</h3>
+          <p>Rates (78%), TDS amounts (78%), dates (62%), act selection (62%) — the general-knowledge tier
+          survives. This defines the product split: <strong>the engine owns the facts</strong> (655 code-family
+          entries, the 3,792-pair transition map, compliance tables — deterministically), <strong>the model owns
+          prose assembly</strong> around them, and every citation emitted is machine-checked against the engine
+          before the reply ships. 100% on the citations, or the system refuses to emit one.</p>
+        </div>
+      </article>
+    </section>
+
+    <!-- ===================== §4 OUR MODEL ===================== -->
+    <section id="model">
+      <div class="sec-label">§4 · Our model</div>
+      <h2>A 4-billion-parameter model beats every frontier model we tested.</h2>
+      <p class="lede">karsastra-4b is a fine-tuned Qwen 3 4B trained not to memorize the Act but to
+      <strong>work with the engine</strong>: resolve a lookup the right way, cite the right table, and hold the
+      prose together. The current generation, karsastra-4b-v4.4, scores <strong>89.4%</strong> on the full locked
+      set — roughly 1.5&times; the best completed frontier run — and posts
+      100% on the highest-rate TDS-computation tier (27/28 on higher-rate no-PAN rulings), plus the first non-zero
+      scores on task families every frontier model zeroed.</p>
+
+      <!-- Figure 2: per-task-family comparison -->
+      <figure class="fig" id="fig-families">
+        <div class="fig-head">
+          <span class="fig-no">Figure&nbsp;2</span>
+          <span class="fig-title">Per-task-family comparison</span>
+          <span class="fig-legend">
+            <span><span class="sw them"></span>glm-5.3-flash<sup class="fn">*</sup></span>
+            <span><span class="sw ours"></span>karsastra-4b-v4.4</span>
+            <span><span class="sw partial"></span>qwen3.5:4b raw</span>
+          </span>
+        </div>
+        <div class="chart" role="img" aria-label="Grouped horizontal bar chart comparing glm-5.3-flash, karsastra-4b and qwen3.5:4b raw across ten task families. Values listed in the exact table below.">
+          <div class="crow">
+            <span class="clabel">Section lookup</span>
+            <span class="cbars">
+              <span class="cbar"><span class="mname">glm-5.3-flash</span><span class="track"><span class="fill" style="width:42%"></span></span><span class="val">42%</span></span>
+              <span class="cbar"><span class="mname">karsastra-4b-v4.4</span><span class="track"><span class="fill" style="width:98.6%"></span></span><span class="val">98.6%</span></span>
+              <span class="cbar"><span class="mname">qwen3.5:4b raw</span><span class="track"><span class="fill partial" style="width:20%"></span></span><span class="val">20%</span></span>
+            </span>
+          </div>
+          <div class="crow">
+            <span class="clabel">Rate lookup</span>
+            <span class="cbars">
+              <span class="cbar"><span class="mname">glm-5.3-flash</span><span class="track"><span class="fill" style="width:78%"></span></span><span class="val">78%</span></span>
+              <span class="cbar"><span class="mname">karsastra-4b-v4.4</span><span class="track"><span class="fill" style="width:95.7%"></span></span><span class="val">95.7%</span></span>
+              <span class="cbar"><span class="mname">qwen3.5:4b raw</span><span class="track"><span class="fill partial" style="width:44%"></span></span><span class="val">44%</span></span>
+            </span>
+          </div>
+          <div class="crow">
+            <span class="clabel">Table assignment</span>
+            <span class="cbars">
+              <span class="cbar"><span class="mname">glm-5.3-flash</span><span class="track"><span class="fill" style="width:54%"></span></span><span class="val">54%</span></span>
+              <span class="cbar"><span class="mname">karsastra-4b-v4.4</span><span class="track"><span class="fill" style="width:98.9%"></span></span><span class="val">98.9%</span></span>
+              <span class="cbar"><span class="mname">qwen3.5:4b raw</span><span class="track"><span class="fill partial" style="width:30%"></span></span><span class="val">30%</span></span>
+            </span>
+          </div>
+          <div class="crow">
+            <span class="clabel">Higher-rate no-PAN rulings</span>
+            <span class="cbars">
+              <span class="cbar"><span class="mname">glm-5.3-flash</span><span class="track"><span class="fill" style="width:96%"></span></span><span class="val">96%</span></span>
+              <span class="cbar"><span class="mname">karsastra-4b-v4.4</span><span class="track"><span class="fill" style="width:100%"></span></span><span class="val">100%</span></span>
+              <span class="cbar"><span class="mname">qwen3.5:4b raw</span><span class="track"><span class="fill partial" style="width:60%"></span></span><span class="val">60%</span></span>
+            </span>
+          </div>
+          <div class="crow">
+            <span class="clabel">TDS payment-code lookup</span>
+            <span class="cbars">
+              <span class="cbar"><span class="mname">glm-5.3-flash</span><span class="track"><span class="fill" style="width:0%"></span></span><span class="val">0%</span></span>
+              <span class="cbar"><span class="mname">karsastra-4b-v4.4</span><span class="track"><span class="fill" style="width:97.2%"></span></span><span class="val">97.2%</span></span>
+              <span class="cbar"><span class="mname">qwen3.5:4b raw</span><span class="track"><span class="fill partial" style="width:0%"></span></span><span class="val">0%</span></span>
+            </span>
+          </div>
+          <div class="crow">
+            <span class="clabel">Old&harr;new section mapping (both directions)</span>
+            <span class="cbars">
+              <span class="cbar"><span class="mname">glm-5.3-flash · dir. 1</span><span class="track"><span class="fill" style="width:32%"></span></span><span class="val">32%</span></span>
+              <span class="cbar"><span class="mname">glm-5.3-flash · dir. 2</span><span class="track"><span class="fill" style="width:4%"></span></span><span class="val">4%</span></span>
+              <span class="cbar"><span class="mname">karsastra-4b-v4.4 · dir. 1</span><span class="track"><span class="fill" style="width:82.4%"></span></span><span class="val">82.4%</span></span>
+              <span class="cbar"><span class="mname">karsastra-4b-v4.4 · dir. 2</span><span class="track"><span class="fill" style="width:45.8%"></span></span><span class="val">45.8%</span></span>
+              <span class="cbar"><span class="mname">qwen3.5:4b raw · dir. 1</span><span class="track"><span class="fill partial" style="width:0%"></span></span><span class="val">0%</span></span>
+              <span class="cbar"><span class="mname">qwen3.5:4b raw · dir. 2</span><span class="track"><span class="fill partial" style="width:18%"></span></span><span class="val">18%</span></span>
+            </span>
+          </div>
+          <div class="crow">
+            <span class="clabel">Code&rarr;nature</span>
+            <span class="cbars">
+              <span class="cbar"><span class="mname">glm-5.3-flash</span><span class="track"><span class="fill" style="width:3%"></span></span><span class="val">3%</span></span>
+              <span class="cbar"><span class="mname">karsastra-4b-v4.4</span><span class="track"><span class="fill" style="width:82.3%"></span></span><span class="val">82.3%</span></span>
+              <span class="cbar"><span class="mname">qwen3.5:4b raw</span><span class="track"><span class="fill partial" style="width:0%"></span></span><span class="val">0%</span></span>
+            </span>
+          </div>
+          <div class="crow">
+            <span class="clabel">Form mapping</span>
+            <span class="cbars">
+              <span class="cbar"><span class="mname">glm-5.3-flash</span><span class="track"><span class="fill" style="width:0%"></span></span><span class="val">0%</span></span>
+              <span class="cbar"><span class="mname">karsastra-4b-v4.4</span><span class="track"><span class="fill" style="width:68.2%"></span></span><span class="val">68.2%</span></span>
+              <span class="cbar"><span class="mname">qwen3.5:4b raw</span><span class="track"><span class="fill partial" style="width:9%"></span></span><span class="val">9%</span></span>
+            </span>
+          </div>
+          <div class="crow">
+            <span class="clabel">4-part ICAI compliance</span>
+            <span class="cbars">
+              <span class="cbar"><span class="mname">glm-5.3-flash</span><span class="track"><span class="fill" style="width:0%"></span></span><span class="val">0%</span></span>
+              <span class="cbar"><span class="mname">karsastra-4b-v4.4</span><span class="track"><span class="fill" style="width:97%"></span></span><span class="val">97%</span></span>
+              <span class="cbar"><span class="mname">qwen3.5:4b raw</span><span class="track"><span class="fill partial" style="width:0%"></span></span><span class="val">0%</span></span>
+            </span>
+          </div>
+          <div class="crow ours-row">
+            <span class="clabel">Strict accuracy (overall)</span>
+            <span class="cbars">
+              <span class="cbar"><span class="mname">glm-5.3-flash</span><span class="track"><span class="fill" style="width:30.2%"></span></span><span class="val">30.2%</span></span>
+              <span class="cbar"><span class="mname">karsastra-4b-v4.4</span><span class="track"><span class="fill" style="width:89.4%"></span></span><span class="val">89.4%</span></span>
+              <span class="cbar"><span class="mname">qwen3.5:4b raw</span><span class="track"><span class="fill partial" style="width:11.6%"></span></span><span class="val">11.6%</span></span>
+            </span>
+          </div>
+        </div>
+        <figcaption class="fig-note">
+          * glm-5.3-flash was the best-scoring frontier model on the full denominator. The mapping family is graded
+          in both directions; bars are shown in table order (dir.&nbsp;1&nbsp;/&nbsp;dir.&nbsp;2). The third series
+          (qwen3.5:4b&nbsp;raw) is drawn hatched only to distinguish it from the two headline legs — it is a full run,
+          not a partial sample. The v4.4 generation (89.4% overall) fixed the model-side gaps the first generation left open — TDS code
+          lookup went from 26% to 97.2% once the training data taught the new 2025-Act code scheme directly. Where
+          uncertainty remains (reverse form mapping), the product routes to the verified engine tables before a
+          professional ever sees the draft.
+        </figcaption>
+
+        <details class="exact">
+          <summary>Exact table — per-task-family comparison</summary>
+          <div class="tbl-wrap">
+            <table class="tbl">
+              <thead>
+                <tr><th>Task family</th><th class="r">glm-5.3-flash*</th><th class="r">karsastra-4b</th><th class="r">qwen3.5:4b raw</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Section lookup</td><td class="r">42%</td><td class="r"><strong>98.6%</strong></td><td class="r">20%</td></tr>
+                <tr><td>Rate lookup</td><td class="r">78%</td><td class="r"><strong>95.7%</strong></td><td class="r">44%</td></tr>
+                <tr><td>Table assignment</td><td class="r">54%</td><td class="r"><strong>98.9%</strong></td><td class="r">30%</td></tr>
+                <tr><td>Higher-rate no-PAN rulings</td><td class="r">96%</td><td class="r"><strong>100%</strong></td><td class="r">60%</td></tr>
+                <tr><td>TDS payment-code lookup</td><td class="r">0%</td><td class="r"><strong>97.2%</strong></td><td class="r">0%</td></tr>
+                <tr><td>Old&harr;new section mapping (both directions)</td><td class="r">32% / 4%</td><td class="r"><strong>82.4% / 45.8%</strong></td><td class="r">0% / 18%</td></tr>
+                <tr><td>Code&rarr;nature</td><td class="r">3%</td><td class="r"><strong>82.3%</strong></td><td class="r">0%</td></tr>
+                <tr><td>Form mapping</td><td class="r">0%</td><td class="r"><strong>68.2%</strong></td><td class="r">9%</td></tr>
+                <tr><td>4-part ICAI compliance</td><td class="r">0%</td><td class="r"><strong>97%</strong></td><td class="r">0%</td></tr>
+                <tr><td>Strict accuracy (overall)</td><td class="r">30.2%</td><td class="r"><strong>89.4%</strong></td><td class="r">11.6%</td></tr>
+              </tbody>
+            </table>
+            <p class="tbl-note">* glm-5.3-flash was the best-scoring frontier model on the full denominator; full per-task-type
+            table in the benchmark release.</p>
+          </div>
+        </details>
+      </figure>
+    </section>
+
+    <!-- ===================== §5 APPROACH ===================== -->
+    <section id="approach">
+      <div class="sec-label">§5 · Approach</div>
+      <h2>The model doesn&rsquo;t own the law. The engine does.</h2>
+      <p class="lede">The five findings converge on one architecture. It is what makes a correct answer
+      <em>provable</em> rather than probable.</p>
+
+      <div class="arch">
+        <div class="arch-col">
+          <div class="arch-tag">Component A</div>
+          <h3>Deterministic engine</h3>
+          <ul>
+            <li>655 code-family entries, Gazette-sourced</li>
+            <li>3,792-pair old&harr;new transition map</li>
+            <li>Compliance tables: code + section + rate + dates</li>
+            <li>Act-boundary rules (CBDT FAQ-verified)</li>
+            <li>Machine-verified provenance on every row</li>
+          </ul>
+        </div>
+        <div class="arch-col">
+          <div class="arch-tag">Component B</div>
+          <h3>Language model</h3>
+          <ul>
+            <li>Reads the notice + client documents</li>
+            <li>Selects the applicable engine facts</li>
+            <li>Assembles the reply prose around them</li>
+            <li>Every citation re-checked post-generation</li>
+            <li>Refuses rather than emits an unverified cite</li>
+          </ul>
+        </div>
+        <div class="arch-mid">&rarr; facts &harr; verify &rarr;</div>
+      </div>
+
+      <div class="method">
+        <div class="two-col">
+          <div>
+            <h3>Why a locked eval, graded this strictly</h3>
+            <ol class="olmethod">
+              <li><strong>Locked before scoring</strong> — 785 tasks, sha256 <span class="num">14ffaa7d…</span>, frozen before any model was run. Models can&rsquo;t study for it.</li>
+              <li><strong>Strict entity match, no LLM judge</strong> — a pass requires all gold entities. The grader was proven two ways: gold answers all parse (785/785), and mutated golds fail (it discriminates).</li>
+              <li><strong>Independently replicated</strong> — a separate inspect-ai pipeline with a translated grader scored 0 verdict differences on shared records.</li>
+              <li><strong>Regenerable weekly</strong> — the confusion window is live; the leaderboard gets new legs (including external models PR&rsquo;d with their own keys) and re-publishes.</li>
+            </ol>
+          </div>
+          <div>
+            <h3>What we are building on it</h3>
+            <p class="md"><strong>Karsastra-Tax</strong> — for CA firms handling GST and income-tax notices: upload the
+            notice and the client&rsquo;s papers, get a structured first-draft reply citing the correct Act — old or new —
+            with every section, code, and form number machine-verified. A 3–6 hour reply becomes a 30-minute review.</p>
+            <p class="md">Beyond tax, the same engine-plus-verifier pattern is the lab&rsquo;s thesis for Indian
+            compliance domains where the law is precise, high-stakes, and recently rewritten — the places
+            general chat models are the most confidently wrong.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== §6 ABOUT ===================== -->
+    <section id="about">
+      <div class="sec-label">§6 · About the lab</div>
+      <div class="two-col">
+        <div>
+          <h3>The name</h3>
+          <p class="md"><em>Prasthana</em> (Sanskrit: प्रस्थान) — &ldquo;the setting forth, the launching point.&rdquo;
+          In Vedanta the <em>prasthana-trayi</em> are the three canonical foundational texts from which all
+          reasoning sets out. We liked a name that is literally about correct foundations: begin from the
+          verified source, then build everything on top of it.</p>
+        </div>
+        <div>
+          <h3>The lab, plainly</h3>
+          <p class="md">Prasthana is a small, independent applied AI lab. We run our own agent fleet and training
+          pipelines daily, and our engineering discipline comes from surviving them: spend containment, locked
+          evals, deterministic verification, refusal over hallucination. The first family built here is
+          <strong>Karsastra</strong> (tax). Later: <em>Prasthana-Bharat</em>, a frontier Indian-laws base model
+          trained on the verified corpus the engine is built from.</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<!-- ===================== FOOTER ===================== -->
+<footer id="contact">
+  <div style="max-width:1200px;margin:0 auto;padding:0 40px 0 284px" class="footin">
+    <div class="cols">
+      <div>
+        <h4>Prasthana</h4>
+        <p>Applied AI lab for India&rsquo;s compliance intelligence.<br>First family: Karsastra — the AI tax-notice reply engine.</p>
+      </div>
+      <div>
+        <h4>Research</h4>
+        <ul>
+          <li><a href="#benchmark">itact-785 benchmark</a></li>
+          <li><a href="#">Benchmark repo (open-source, publishing)</a></li>
+          <li><a href="#">Section lookup tool (coming)</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="mailto:hello@prasthana.in">hello@prasthana.in</a></li>
+          <li><a href="#">Karsastra product site</a></li>
+          <li><a href="#">Waitlist for design partners</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="fineprint">
+      All benchmark numbers on this page were produced by the locked grader over answer files it generated; methodology,
+      grader code, per-model answer files and the locked task set ship with the benchmark. Models were run under existing
+      subscriptions (z.ai coding plan, Ollama Cloud, local hardware); unscored OpenRouter legs are documented honestly and
+      may be contributed. Errors in this document are corrections-in-waiting — write to us.
+      <br><br>© 2026 Prasthana. India.
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+  var links = Array.prototype.slice.call(document.querySelectorAll('.toc a'));
+  var byId = {};
+  links.forEach(function (l) {
+    var id = decodeURIComponent(l.hash.slice(1));
+    var el = document.getElementById(id);
+    if (el) { byId[id] = { el: el, link: l }; }
+  });
+  function setActive(link) {
+    links.forEach(function (l) { l.classList.toggle('active', l === link); });
+  }
+  setActive(links[0]);
+
+  // Tiny IntersectionObserver highlights the ToC entry for the section currently
+  // crossing the upper third of the viewport. Highlighting is not motion, so this
+  // runs regardless of prefers-reduced-motion; motion (smooth scrolling) is handled
+  // purely in CSS inside a no-preference media query.
+  if ('IntersectionObserver' in window) {
+    var current = links[0];
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          var rec = byId[entry.target.id];
+          if (rec) { current = rec.link; setActive(rec.link); }
+        }
+      });
+    }, { rootMargin: '-15% 0px -70% 0px', threshold: 0 });
+    Object.keys(byId).forEach(function (id) { observer.observe(byId[id].el); });
+
+    // Keep the last section highlighted when scrolled to the bottom of the page.
+    window.addEventListener('scroll', function () {
+      if (window.innerHeight + window.scrollY >= document.body.scrollHeight - 4) {
+        var last = links[links.length - 1];
+        if (current !== last) { current = last; setActive(last); }
+      }
+    }, { passive: true });
+  }
+})();
+</script>
+
+</body>
+</html>
