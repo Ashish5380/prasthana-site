@@ -1,0 +1,1105 @@
+{
+ "sections": [
+  {
+   "o": "192",
+   "n": "392",
+   "t": "TDS on salary",
+   "note": "Salary TDS under s.392(1); reset computation from 1 Apr 2026 for TY 2026-27 (FAQ Q6.23).",
+   "conf": "high",
+   "ret": "2026-10-05"
+  },
+  {
+   "o": "192A",
+   "n": "392(7)",
+   "t": "TDS on premature EPF withdrawal",
+   "note": "Code 1004.",
+   "conf": "high",
+   "ret": "2026-10-05"
+  },
+  {
+   "o": "193-194T",
+   "n": "393",
+   "t": "TDS on all payments other than salary",
+   "note": "Consolidated into tabular s.393: Table 1 residents -> s.393(1), Table 2 non-residents -> s.393(2), Table 3 any person -> s.393(3). Rates/thresholds largely unchanged (FAQ Q2.3).",
+   "conf": "high",
+   "ret": "2026-10-05"
+  },
+  {
+   "o": "195",
+   "n": "393(2) [Table Sl. No. 17]",
+   "t": "TDS on any other sum payable to non-resident",
+   "note": "Omnibus NR withholding; payment code 1057 (Legal500).",
+   "conf": "high",
+   "ret": "2026-10-05"
+  },
+  {
+   "o": "195(6)",
+   "n": "397(3)(d)",
+   "t": "Remittance information + CA certificate",
+   "note": "Form 15CA/15CB -> Form 145/146; Rule 220 (old) -> Rule 220 of IT Rules 2026 retains thresholds (FAQ Q4.23, Q4.26).",
+   "conf": "high",
+   "ret": "2026-10-05"
+  },
+  {
+   "o": "197 / 195(2)-195(3)",
+   "n": "395(1)/(2)",
+   "t": "Lower/nil withholding certificate (AO)",
+   "note": "Application in Form 128 (FAQ Q4.11); AO certificate under s.395(1)/395(2) substitutes for CA certificate in Form 145 Part B (Q4.28-Q4.30). Old s.197 certificates valid for TY 2026-27 projected receivables (Q2.12).",
+   "conf": "high",
+   "ret": "2026-10-05"
+  },
+  {
+   "o": "206C",
+   "n": "394",
+   "t": "Tax collected at source",
+   "note": "All TCS consolidated into s.394 with tables; transition: amounts debited/received on/before 31.3.26 -> old Act; on/after 1.4.26 -> s.394 (FAQ Q6.21). Codes 1068-1092.",
+   "conf": "high",
+   "ret": "2026-10-05"
+  },
+  {
+   "o": "206AB / 206CCA",
+   "n": "411",
+   "t": "Higher TDS/TCS for non-filers",
+   "note": "Applies from TY 2026-27; compliance logic same (check non-filer database). SINGLE-SOURCE mapping (practitioner comment on TaxGuru) - verify against bare Act s.411 before production use.",
+   "conf": "medium",
+   "ret": "2026-10-05"
+  },
+  {
+   "o": "44AB",
+   "n": "63",
+   "t": "Tax audit",
+   "note": "Thresholds unchanged: business turnover > Rs 1 crore (Rs 10 crore where cash transactions <= 5% both ways); profession gross receipts > Rs 50 lakh; presumptive opt-outs (FAQ Q4.31).",
+   "conf": "high",
+   "ret": "2026-10-05"
+  },
+  {
+   "o": "271B",
+   "n": "428(c) [see note re 446]",
+   "t": "Penalty/fee for failure to get accounts audited",
+   "note": "FY 2025-26 (old Act): s.271B discretionary penalty - lower of 0.5% of turnover and Rs 1.5 lakh, with s.273B reasonable-cause defence. From TY 2026-27 (new Act): graded FEE, no reasonable-cause defence - Rs 75,000 (delay up to 1 month) / Rs 1,50,000 (beyond 1 month) under s.428(c).",
+   "conf": "medium",
+   "ret": "2026-10-05"
+  },
+  {
+   "o": "273B",
+   "n": "(no direct equivalent)",
+   "t": "Reasonable-cause defence to penalties",
+   "note": "Retained for old-Act defaults; from TY 2026-27 several penalties became fixed fees with no defence (TaxUpdate; PwC notes broad penalty-to-fee conversion under FA 2026).",
+   "conf": "medium",
+   "ret": "2026-10-05"
+  },
+  {
+   "o": "269SS",
+   "n": "185",
+   "t": "Cash loans/deposits: no acceptance of Rs 20,000 or more in cash",
+   "note": "Penalty (old 271D) -> s.450: 100% of amount.",
+   "conf": "high",
+   "ret": "2026-10-05"
+  },
+  {
+   "o": "269ST",
+   "n": "186",
+   "t": "No cash receipt of Rs 2,00,000 or more (per day/single transaction/one event)",
+   "note": "Penalty (old 271DA) -> s.451: 100% of amount. Corroborated by three independent sources; IncorpX's 's.221' mapping is contradicted and flagged in conflicts.md.",
+   "conf": "high",
+   "ret": "2026-10-05"
+  },
+  {
+   "o": "269T",
+   "n": "188",
+   "t": "No cash repayment of loan/deposit of Rs 20,000 or more",
+   "note": "Penalty (old 271E) -> s.453: 100% of amount.",
+   "conf": "high",
+   "ret": "2026-10-05"
+  },
+  {
+   "o": "40A(3)",
+   "n": "36(4)",
+   "t": "Disallowance of business expenditure paid in cash above Rs 10,000 (per day per person)",
+   "note": "100% disallowance retained. Exceptions (old Rule 6DD) continue. IncorpX's 's.34(3)' mapping contradicted - see conflicts.md.",
+   "conf": "high",
+   "ret": "2026-10-05"
+  },
+  {
+   "o": "40A(3A)",
+   "n": "36(5)",
+   "t": "Disallowance for payments in subsequent year",
+   "note": "",
+   "conf": "high",
+   "ret": "2026-10-05"
+  },
+  {
+   "o": "40A(3) goods-carrier exception",
+   "n": "36(6)",
+   "t": "Rs 35,000 cash-payment limit for goods carriages (transporters)",
+   "note": "",
+   "conf": "medium",
+   "ret": "2026-10-05"
+  },
+  {
+   "o": "40(a)(ia)",
+   "n": "35(b)",
+   "t": "Disallowance of expenditure where TDS not deducted/paid",
+   "note": "TaxUpdate CBDT-FAQ deep-dive #12.",
+   "conf": "high",
+   "ret": "2026-10-05"
+  },
+  {
+   "o": "43B(h)",
+   "n": "37",
+   "t": "MSME payment disallowance (payment beyond time limit under MSMED Act)",
+   "note": "TaxUpdate: 'Move to Section 37 of the Income-tax Act, 2025'.",
+   "conf": "medium",
+   "ret": "2026-10-05"
+  },
+  {
+   "o": "80C / 80CCE",
+   "n": "123 read with Schedule XV",
+   "t": "Deduction for specified savings instruments",
+   "note": "Rs 1.5 lakh aggregate retained; eligible instruments moved to Schedule XV; NOT available under new tax regime (FAQ Q6.24, Q8.10, Q8.11).",
+   "conf": "high",
+   "ret": "2026-10-05"
+  },
+  {
+   "o": "139(1)",
+   "n": "263(1)",
+   "t": "Return of income - due dates",
+   "note": "Due dates unchanged: 30 Nov (s.172 cases), 31 Oct (companies/audited), 31 Aug (business non-audit), 31 Jul (others) per s.263(1)(c) as proposed in Finance Bill 2026 (FAQ Q3.3).",
+   "conf": "high",
+   "ret": "2026-10-05"
+  },
+  {
+   "o": "139(4)",
+   "n": "263(4)",
+   "t": "Belated return",
+   "note": "Within 9 months from end of relevant tax year (FAQ Q3.13).",
+   "conf": "high",
+   "ret": "2026-10-05"
+  },
+  {
+   "o": "139(5)",
+   "n": "263(5)",
+   "t": "Revised return",
+   "note": "Within 12 months from end of relevant tax year (as proposed in Finance Bill 2026) (FAQ Q3.13).",
+   "conf": "high",
+   "ret": "2026-10-05"
+  },
+  {
+   "o": "139(8A)",
+   "n": "263(6)",
+   "t": "Updated return (ITR-U)",
+   "note": "Within 48 months from end of FY succeeding the tax year; additional tax u/s 267; one per tax year (FAQ Q3.13, Q3.14).",
+   "conf": "high",
+   "ret": "2026-10-05"
+  },
+  {
+   "o": "234F",
+   "n": "428",
+   "t": "Fee for delayed filing of return / audit report",
+   "note": "s.428 prescribes fees for return delay and (per FA 2026) audit-report delay (FAQ Q3.26; TaxUpdate).",
+   "conf": "high",
+   "ret": "2026-10-05"
+  },
+  {
+   "o": "234B",
+   "n": "424",
+   "t": "Interest for default in payment of advance tax",
+   "note": "1% per month or part - unchanged (FAQ Q2.21).",
+   "conf": "high",
+   "ret": "2026-10-05"
+  },
+  {
+   "o": "234C",
+   "n": "425",
+   "t": "Interest for deferment of advance tax instalments",
+   "note": "1% / 3% as applicable - unchanged (FAQ Q2.21).",
+   "conf": "high",
+   "ret": "2026-10-05"
+  },
+  {
+   "o": "201(1)",
+   "n": "398(2)",
+   "t": "Assessee-in-default (TDS failure)",
+   "note": "s.398(2) = proviso to old s.201(1) relief where deductee filed return and paid tax (FAQ Q6.19). Time-limit for order: s.398(5) - later of 6 years from end of tax year deductible, or 2 years from end of tax year of correction statement (Q6.18).",
+   "conf": "high",
+   "ret": "2026-10-05"
+  },
+  {
+   "o": "271C",
+   "n": "448 (TDS) / 449 (TCS)",
+   "t": "Penalty equal to tax not deducted",
+   "note": "For pre-1.4.26 failures s.271C of old Act continues via s.536(2)(c),(d) (FAQ Q6.17). New-Act equivalent for post-1.4.26 defaults VERIFIED from bare Act: s.448 imposes penalty equal to the tax the person failed to deduct or pay or ensure payment of (incl. deemed-deduction failures under 393(3) Note 2 / 393(1) Sl.8 Note 6); s.449 is the TCS-collection mirror. Reasonable-cause defence survives via s.470 (old 273B analogue). s.447 (unrelated 172-report penalty) was omitted by FA 2026.",
+   "conf": "high",
+   "ret": "2026-10-05"
+  },
+  {
+   "o": "272A(2)(g)",
+   "n": "465(2)(g)",
+   "t": "Penalty for late TDS certificate",
+   "note": "For pre-1.4.26 failures old s.272A(2)(g) continues (FAQ Q6.16). New-Act equivalent VERIFIED from bare Act: s.465(2)(g) imposes Rs 500/day for failure to furnish the s.395(4) TDS/TCS certificate (old s.203 analogue), capped at the tax amount by s.465(3)(b); reasonable-cause defence via s.470 (covers s.465(2)). Late TDS/TCS statements fall under s.465(2)(k)-(m) (statements u/s 397(3)).",
+   "conf": "high",
+   "ret": "2026-10-05"
+  },
+  {
+   "o": "132 / 132A",
+   "n": "(old Act continues)",
+   "t": "Search and requisition",
+   "note": "Search initiated before 1.4.26: ALL connected proceedings (including block assessments u/s 158BC) continue under the 1961 Act (FAQ Q3.15, Q10.11).",
+   "conf": "high",
+   "ret": "2026-10-05"
+  },
+  {
+   "o": "72 / 72A / 73 / 74 / 71B",
+   "n": "(carried forward via s.536(2)(m),(n))",
+   "t": "Loss set-off and carry-forward",
+   "note": "Old-Act losses carried forward under new Act in the manner of the old Act, within original 8-year (business loss) limits; nature preserved (FAQ Q8.2-Q8.5). Belated old-Act loss returns do NOT qualify (Q8.8).",
+   "conf": "high",
+   "ret": "2026-10-05"
+  },
+  {
+   "o": "115JAA / 115JD",
+   "n": "(credits preserved)",
+   "t": "MAT/AMT credit carry-forward",
+   "note": "Unutilised MAT/AMT credits remain eligible under new Act; 15-year total window (FAQ Q2.25, Q2.26).",
+   "conf": "high",
+   "ret": "2026-10-05"
+  },
+  {
+   "o": "-",
+   "n": "536",
+   "t": "Repeal and savings (transition umbrella)",
+   "note": "s.536(2) preserves approvals, registrations, circulars, notifications, pending applications and liabilities not inconsistent with the new Act (FAQ Q1.7, Q10.6-Q10.10).",
+   "conf": "high",
+   "ret": "2026-10-05"
+  },
+  {
+   "o": "87A",
+   "n": "156",
+   "t": "Tax rebate for resident individuals",
+   "note": "Old regime: rebate up to Rs 12,500 where total income <= Rs 5,00,000 (unchanged in the 2025 Act). New regime (default): rebate up to Rs 60,000 where total income <= Rs 12,00,000 (raised from Rs 25,000 / Rs 7 lakh by Finance Act 2025, effective TY 2026-27), with marginal relief just above Rs 12 lakh. Rebate applies against income-tax payable before health & education cess; special-rate incomes (e.g. 111A/112A capital gains, winnings) are excluded. Resident individuals only.",
+   "conf": "high",
+   "ret": "2026-10-13"
+  }
+ ],
+ "codes": [
+  {
+   "code": 1001,
+   "old": "192",
+   "new": "392(1)",
+   "nature": "Salary - Government employees (other than Union Government)",
+   "rate": "Slab rates (regime-dependent)",
+   "threshold": "Basic exemption limit (regime-dependent)",
+   "cat": "salary"
+  },
+  {
+   "code": 1002,
+   "old": "192",
+   "new": "392(1)",
+   "nature": "Salary - employees other than Government",
+   "rate": "Slab rates (regime-dependent)",
+   "threshold": "Basic exemption limit (regime-dependent)",
+   "cat": "salary"
+  },
+  {
+   "code": 1003,
+   "old": "192",
+   "new": "392(1)",
+   "nature": "Salary - Indian (Union/Central) Government employees",
+   "rate": "Slab rates (regime-dependent)",
+   "threshold": "Basic exemption limit (regime-dependent)",
+   "cat": "salary"
+  },
+  {
+   "code": 1004,
+   "old": "192A",
+   "new": "392(7)",
+   "nature": "Premature EPF withdrawal / accumulated balance due to an employee",
+   "rate": "10%",
+   "threshold": "Rs 50,000",
+   "cat": "salary"
+  },
+  {
+   "code": 1005,
+   "old": "194D",
+   "new": "393(1) [Table: Sl. No. 1(i)]",
+   "nature": "Commission or brokerage - insurance",
+   "rate": "2%",
+   "threshold": "Rs 20,000",
+   "cat": "resident"
+  },
+  {
+   "code": 1006,
+   "old": "194H",
+   "new": "393(1) [Table: Sl. No. 1(ii)]",
+   "nature": "Commission or brokerage - others",
+   "rate": "2%",
+   "threshold": "Rs 20,000",
+   "cat": "resident"
+  },
+  {
+   "code": 1007,
+   "old": "194IB",
+   "new": "393(1) [Table: Sl. No. 2(i)]",
+   "nature": "Rent by individual/HUF not liable to tax audit",
+   "rate": "2%",
+   "threshold": "Rs 50,000 per month or part thereof",
+   "cat": "resident"
+  },
+  {
+   "code": 1008,
+   "old": "194I(a)",
+   "new": "393(1) [Table: Sl. No. 2(ii).D(a)]",
+   "nature": "Rent - plant, machinery or equipment",
+   "rate": "2%",
+   "threshold": "Rs 50,000 per month",
+   "cat": "resident"
+  },
+  {
+   "code": 1009,
+   "old": "194I(b)",
+   "new": "393(1) [Table: Sl. No. 2(ii).D(b)]",
+   "nature": "Rent - land, building, furniture or fittings",
+   "rate": "10%",
+   "threshold": "Rs 50,000 per month",
+   "cat": "resident"
+  },
+  {
+   "code": 1010,
+   "old": "194IA",
+   "new": "393(1) [Table: Sl. No. 3(i)]",
+   "nature": "Transfer of immovable property (other than agricultural land) - consideration",
+   "rate": "1%",
+   "threshold": "Rs 50,00,000",
+   "cat": "resident"
+  },
+  {
+   "code": 1011,
+   "old": "194IC",
+   "new": "393(1) [Table: Sl. No. 3(ii)]",
+   "nature": "Monetary consideration under joint development agreement",
+   "rate": "10%",
+   "threshold": "No threshold",
+   "cat": "resident"
+  },
+  {
+   "code": 1012,
+   "old": "194LA",
+   "new": "393(1) [Table: Sl. No. 3(iii)]",
+   "nature": "Compensation on acquisition of certain immovable property",
+   "rate": "10%",
+   "threshold": "Rs 5,00,000",
+   "cat": "resident"
+  },
+  {
+   "code": 1013,
+   "old": "194K",
+   "new": "393(1) [Table: Sl. No. 4(i)]",
+   "nature": "Income from units of mutual fund / specified company (dividend by MF)",
+   "rate": "10%",
+   "threshold": "Rs 10,000",
+   "cat": "resident"
+  },
+  {
+   "code": 1014,
+   "old": "194LBA",
+   "new": "393(1) [Table: Sl. No. 4(ii)]",
+   "nature": "Business trust distribution - interest (resident unit holder)",
+   "rate": "10%",
+   "threshold": "No threshold",
+   "cat": "resident"
+  },
+  {
+   "code": 1015,
+   "old": "194LBA",
+   "new": "393(1) [Table: Sl. No. 4(ii)]",
+   "nature": "Business trust distribution - dividend (resident unit holder)",
+   "rate": "10%",
+   "threshold": "No threshold",
+   "cat": "resident"
+  },
+  {
+   "code": 1016,
+   "old": "194LBA",
+   "new": "393(1) [Table: Sl. No. 4(ii)]",
+   "nature": "Business trust distribution - rental (REIT, resident unit holder)",
+   "rate": "10%",
+   "threshold": "No threshold",
+   "cat": "resident"
+  },
+  {
+   "code": 1017,
+   "old": "194LBB",
+   "new": "393(1) [Table: Sl. No. 4(iii)]",
+   "nature": "Income from units of investment fund (s.224)",
+   "rate": "10%",
+   "threshold": "No threshold",
+   "cat": "resident"
+  },
+  {
+   "code": 1018,
+   "old": "194LBC",
+   "new": "393(1) [Table: Sl. No. 4(iv)]",
+   "nature": "Income from investment in securitisation trust",
+   "rate": "10%",
+   "threshold": "No threshold",
+   "cat": "resident"
+  },
+  {
+   "code": 1019,
+   "old": "193",
+   "new": "393(1) [Table: Sl. No. 5(i)]",
+   "nature": "Interest on securities",
+   "rate": "10%",
+   "threshold": "Rs 10,000",
+   "cat": "resident"
+  },
+  {
+   "code": 1020,
+   "old": "194A",
+   "new": "393(1) [Table: Sl. No. 5(ii).D(a)]",
+   "nature": "Interest other than securities - senior citizen payee (bank/PO)",
+   "rate": "10%",
+   "threshold": "Rs 1,00,000",
+   "cat": "resident"
+  },
+  {
+   "code": 1021,
+   "old": "194A",
+   "new": "393(1) [Table: Sl. No. 5(ii).D(b)]",
+   "nature": "Interest other than securities - other than senior citizen (bank/PO deductor)",
+   "rate": "10%",
+   "threshold": "Rs 50,000",
+   "cat": "resident"
+  },
+  {
+   "code": 1022,
+   "old": "194A",
+   "new": "393(1) [Table: Sl. No. 5(iii)]",
+   "nature": "Interest other than securities - deductor other than bank/post office",
+   "rate": "10%",
+   "threshold": "Rs 10,000",
+   "cat": "resident"
+  },
+  {
+   "code": 1023,
+   "old": "194C",
+   "new": "393(1) [Table: Sl. No. 6(i).D(a)]",
+   "nature": "Contractor/sub-contractor payment - payee Individual/HUF",
+   "rate": "1%",
+   "threshold": "Rs 30,000 single / Rs 1,00,000 aggregate p.a.",
+   "cat": "resident"
+  },
+  {
+   "code": 1024,
+   "old": "194C",
+   "new": "393(1) [Table: Sl. No. 6(i).D(b)]",
+   "nature": "Contractor/sub-contractor payment - payee other than Individual/HUF",
+   "rate": "2%",
+   "threshold": "Rs 30,000 single / Rs 1,00,000 aggregate p.a.",
+   "cat": "resident"
+  },
+  {
+   "code": 1025,
+   "old": "194M",
+   "new": "393(1) [Table: Sl. No. 6(ii)]",
+   "nature": "Payment by Individual/HUF (contract work, professional fees, commission) not covered by 194C/194H/194J",
+   "rate": "2%",
+   "threshold": "Rs 50,00,000 aggregate p.a.",
+   "cat": "resident"
+  },
+  {
+   "code": 1026,
+   "old": "194J(a)",
+   "new": "393(1) [Table: Sl. No. 6(iii).D(a)]",
+   "nature": "Fees for technical services / royalty (cinematographic films) / call centre",
+   "rate": "2%",
+   "threshold": "Rs 50,000",
+   "cat": "resident"
+  },
+  {
+   "code": 1027,
+   "old": "194J(b)",
+   "new": "393(1) [Table: Sl. No. 6(iii).D(b)]",
+   "nature": "Fees for professional services",
+   "rate": "10%",
+   "threshold": "Rs 50,000",
+   "cat": "resident"
+  },
+  {
+   "code": 1028,
+   "old": "194J(b)",
+   "new": "393(1) [Table: Sl. No. 6(iii).D(b)]",
+   "nature": "Director's remuneration/fees/commission (other than as employee under s.392)",
+   "rate": "10%",
+   "threshold": "No standard threshold",
+   "cat": "resident"
+  },
+  {
+   "code": 1029,
+   "old": "194",
+   "new": "393(1) [Table: Sl. No. 7]",
+   "nature": "Dividends (resident)",
+   "rate": "10%",
+   "threshold": "Rs 10,000",
+   "cat": "resident"
+  },
+  {
+   "code": 1030,
+   "old": "194DA",
+   "new": "393(1) [Table: Sl. No. 8(i)]",
+   "nature": "Payment under life insurance policy (taxable cases)",
+   "rate": "2%",
+   "threshold": "Rs 1,00,000",
+   "cat": "resident"
+  },
+  {
+   "code": 1031,
+   "old": "194Q",
+   "new": "393(1) [Table: Sl. No. 8(ii)]",
+   "nature": "Purchase of goods (buyer turnover > Rs 10 crore)",
+   "rate": "0.1%",
+   "threshold": "Rs 50,00,000 p.a. aggregate purchases from seller",
+   "cat": "resident"
+  },
+  {
+   "code": 1032,
+   "old": "194P",
+   "new": "393(1) [Table: Sl. No. 8(iii)]",
+   "nature": "Payment to specified senior citizen (75+)",
+   "rate": "Slab rates",
+   "threshold": "Rs 4,00,000 (specified income)",
+   "cat": "resident"
+  },
+  {
+   "code": 1033,
+   "old": "194R",
+   "new": "393(1) [Table: Sl. No. 8(iv)]",
+   "nature": "Benefit or perquisite from business or profession",
+   "rate": "10%",
+   "threshold": "Rs 20,000",
+   "cat": "resident"
+  },
+  {
+   "code": 1034,
+   "old": "194R",
+   "new": "393(1) [Table: Sl. No. 8(iv) Note 6]",
+   "nature": "Perquisite from business/profession - partly in cash or kind",
+   "rate": "10%",
+   "threshold": "Rs 20,000",
+   "cat": "resident"
+  },
+  {
+   "code": 1035,
+   "old": "194O",
+   "new": "393(1) [Table: Sl. No. 8(v)]",
+   "nature": "Payment to e-commerce participant by e-commerce operator",
+   "rate": "0.1%",
+   "threshold": "Nil (Rs 5,00,000 for Individual/HUF participants)",
+   "cat": "resident"
+  },
+  {
+   "code": 1037,
+   "old": "194S",
+   "new": "393(1) [Table: Sl. No. 8(vi)]",
+   "nature": "Transfer of virtual digital asset - payer other than Individual/HUF",
+   "rate": "1%",
+   "threshold": "Rs 10,000 (Rs 50,000 for specified Individual/HUF)",
+   "cat": "resident"
+  },
+  {
+   "code": 1038,
+   "old": "194S",
+   "new": "393(1) [Table: Sl. No. 8(vi) Note 6]",
+   "nature": "Transfer of virtual digital asset - consideration partly in cash or kind",
+   "rate": "1%",
+   "threshold": "Rs 10,000 (Rs 50,000 for specified Individual/HUF)",
+   "cat": "resident"
+  },
+  {
+   "code": 1039,
+   "old": "194E",
+   "new": "393(2) [Table: Sl. No. 1]",
+   "nature": "Payment to non-resident sportsmen/entertainers/sports association (s.211)",
+   "rate": "20%",
+   "threshold": "No threshold",
+   "cat": "non-resident"
+  },
+  {
+   "code": 1040,
+   "old": "194LC",
+   "new": "393(2) [Table: Sl. No. 2]",
+   "nature": "Interest on foreign currency borrowings - loan or long-term infrastructure bond",
+   "rate": "5%",
+   "threshold": "No threshold",
+   "cat": "non-resident"
+  },
+  {
+   "code": 1041,
+   "old": "194LC",
+   "new": "393(2) [Table: Sl. No. 3]",
+   "nature": "Interest on rupee-denominated bond (before 1 Jul 2023)",
+   "rate": "5%",
+   "threshold": "No threshold",
+   "cat": "non-resident"
+  },
+  {
+   "code": 1042,
+   "old": "194LC",
+   "new": "393(2) [Table: Sl. No. 4.E(a)]",
+   "nature": "Interest on bonds listed on IFSC exchange (1 Apr 2020 - 30 Jun 2023)",
+   "rate": "4%",
+   "threshold": "No threshold",
+   "cat": "non-resident"
+  },
+  {
+   "code": 1043,
+   "old": "194LC",
+   "new": "393(2) [Table: Sl. No. 4.E(b)]",
+   "nature": "Interest on bonds listed on IFSC exchange (on or after 1 Jul 2023)",
+   "rate": "9%",
+   "threshold": "No threshold",
+   "cat": "non-resident"
+  },
+  {
+   "code": 1044,
+   "old": "194LB",
+   "new": "393(2) [Table: Sl. No. 5]",
+   "nature": "Interest from infrastructure debt fund to non-resident",
+   "rate": "5%",
+   "threshold": "No threshold",
+   "cat": "non-resident"
+  },
+  {
+   "code": 1045,
+   "old": "194LBA",
+   "new": "393(2) [Table: Sl. No. 6.E(a)]",
+   "nature": "Business trust distributed income - interest (non-resident)",
+   "rate": "5%",
+   "threshold": "No threshold",
+   "cat": "non-resident"
+  },
+  {
+   "code": 1046,
+   "old": "194LBA",
+   "new": "393(2) [Table: Sl. No. 6.E(b)]",
+   "nature": "Business trust distributed income - rental (non-resident)",
+   "rate": "10%",
+   "threshold": "No threshold",
+   "cat": "non-resident"
+  },
+  {
+   "code": 1047,
+   "old": "194LBA",
+   "new": "393(2) [Table: Sl. No. 7]",
+   "nature": "Business trust distributed income - real estate asset (non-resident)",
+   "rate": "30% / 40% (DTAA may apply)",
+   "threshold": "No threshold",
+   "cat": "non-resident"
+  },
+  {
+   "code": 1048,
+   "old": "194LBB",
+   "new": "393(2) [Table: Sl. No. 8]",
+   "nature": "Income from units of investment fund (non-resident)",
+   "rate": "30% / 40% (DTAA may apply)",
+   "threshold": "No threshold",
+   "cat": "non-resident"
+  },
+  {
+   "code": 1049,
+   "old": "194LBC",
+   "new": "393(2) [Table: Sl. No. 9]",
+   "nature": "Income from investment in securitisation trust (non-resident)",
+   "rate": "30% / 40% (DTAA may apply)",
+   "threshold": "No threshold",
+   "cat": "non-resident"
+  },
+  {
+   "code": 1050,
+   "old": "196B",
+   "new": "393(2) [Table: Sl. No. 10]",
+   "nature": "Income from units of mutual fund or UTI (non-resident, s.208)",
+   "rate": "20% / DTAA",
+   "threshold": "No threshold",
+   "cat": "non-resident"
+  },
+  {
+   "code": 1051,
+   "old": "196C",
+   "new": "393(2) [Table: Sl. No. 11]",
+   "nature": "Income from units of offshore fund (s.208)",
+   "rate": "10%",
+   "threshold": "No threshold",
+   "cat": "non-resident"
+  },
+  {
+   "code": 1052,
+   "old": "196C",
+   "new": "393(2) [Table: Sl. No. 12]",
+   "nature": "Long-term capital gains on transfer of units of offshore fund",
+   "rate": "12.5%",
+   "threshold": "No threshold",
+   "cat": "non-resident"
+  },
+  {
+   "code": 1053,
+   "old": "196C",
+   "new": "393(2) [Table: Sl. No. 13]",
+   "nature": "Interest or dividend on foreign currency bonds or GDRs (s.209)",
+   "rate": "10%",
+   "threshold": "No threshold",
+   "cat": "non-resident"
+  },
+  {
+   "code": 1054,
+   "old": "196C",
+   "new": "393(2) [Table: Sl. No. 14]",
+   "nature": "Long-term capital gains on transfer of bonds or GDRs (s.209)",
+   "rate": "12.5%",
+   "threshold": "No threshold",
+   "cat": "non-resident"
+  },
+  {
+   "code": 1055,
+   "old": "196D",
+   "new": "393(2) [Table: Sl. No. 15]",
+   "nature": "Income of FII from securities (s.210(1))",
+   "rate": "20% / DTAA",
+   "threshold": "No threshold",
+   "cat": "non-resident"
+  },
+  {
+   "code": 1056,
+   "old": "196D",
+   "new": "393(2) [Table: Sl. No. 16]",
+   "nature": "Income of specified fund from securities (s.210(1))",
+   "rate": "10%",
+   "threshold": "No threshold",
+   "cat": "non-resident"
+  },
+  {
+   "code": 1057,
+   "old": "195",
+   "new": "393(2) [Table: Sl. No. 17]",
+   "nature": "Any other sum payable to non-resident (interest, royalty, FTS, rent, capital gains etc. except salary)",
+   "rate": "Applicable rate / rates in force (12.5% LTCG on specified assets)",
+   "threshold": "No threshold",
+   "cat": "non-resident"
+  },
+  {
+   "code": 1058,
+   "old": "194B",
+   "new": "393(3) [Table: Sl. No. 1]",
+   "nature": "Winnings from lottery, crossword, card games, gambling/betting",
+   "rate": "30%",
+   "threshold": "Rs 10,000",
+   "cat": "any_person"
+  },
+  {
+   "code": 1059,
+   "old": "194B",
+   "new": "393(3) [Table: Sl. No. 1 Note 2]",
+   "nature": "Winnings as above - tax paid before winnings released",
+   "rate": "30%",
+   "threshold": "Rs 10,000",
+   "cat": "any_person"
+  },
+  {
+   "code": 1060,
+   "old": "194BA",
+   "new": "393(3) [Table: Sl. No. 2]",
+   "nature": "Winnings from online games",
+   "rate": "30%",
+   "threshold": "Net winnings",
+   "cat": "any_person"
+  },
+  {
+   "code": 1061,
+   "old": "194BA",
+   "new": "393(3) [Table: Sl. No. 4]",
+   "nature": "Online game winnings - tax paid before winnings released",
+   "rate": "30%",
+   "threshold": "Net winnings",
+   "cat": "any_person"
+  },
+  {
+   "code": 1062,
+   "old": "194BB",
+   "new": "393(3) [Table: Sl. No. 3]",
+   "nature": "Winnings from horse races",
+   "rate": "30%",
+   "threshold": "Rs 10,000",
+   "cat": "any_person"
+  },
+  {
+   "code": 1063,
+   "old": "194G",
+   "new": "194G -> 393(3) [Table: Sl. No. 4]",
+   "nature": "Income from stocking/distributing/purchasing/selling lottery tickets",
+   "rate": "2%",
+   "threshold": "Rs 20,000",
+   "cat": "any_person"
+  },
+  {
+   "code": 1064,
+   "old": "194N",
+   "new": "393(3) [Table: Sl. No. 5.D(a)]",
+   "nature": "Cash withdrawal by bank/PO/co-op society from a co-operative society account",
+   "rate": "2% of amount exceeding Rs 3 crore",
+   "threshold": "Rs 3,00,00,000",
+   "cat": "any_person"
+  },
+  {
+   "code": 1065,
+   "old": "194N",
+   "new": "393(3) [Table: Sl. No. 5.D(b)]",
+   "nature": "Cash withdrawal by bank/PO/co-op society (other than from co-op society account)",
+   "rate": "2% of excess over threshold (5% of excess over Rs 1 crore where no ITRs filed)",
+   "threshold": "Rs 1,00,00,000 (Rs 20,00,000 if no ITR filed for prior 3 years)",
+   "cat": "any_person"
+  },
+  {
+   "code": 1066,
+   "old": "194EE",
+   "new": "393(3) [Table: Sl. No. 6]",
+   "nature": "Payment from National Savings Scheme deposits (old s.80CCA(2))",
+   "rate": "10%",
+   "threshold": "Rs 2,500",
+   "cat": "any_person"
+  },
+  {
+   "code": 1067,
+   "old": "194T",
+   "new": "393(3) [Table: Sl. No. 7]",
+   "nature": "Payment by firm to partner - salary, bonus, commission, interest, remuneration",
+   "rate": "10%",
+   "threshold": "Rs 20,000",
+   "cat": "any_person"
+  },
+  {
+   "code": 1068,
+   "old": "206C(1)",
+   "new": "394(1)",
+   "nature": "TCS - sale of alcoholic liquor for human consumption",
+   "rate": "2%",
+   "threshold": "No threshold",
+   "cat": "tcs"
+  },
+  {
+   "code": 1069,
+   "old": "206C(1)",
+   "new": "394(1)",
+   "nature": "TCS - sale of tendu leaves",
+   "rate": "2%",
+   "threshold": "No threshold",
+   "cat": "tcs"
+  },
+  {
+   "code": 1070,
+   "old": "206C(1)",
+   "new": "394(1) [Table: Sl. No. 3]",
+   "nature": "TCS - sale of timber obtained under a forest lease",
+   "rate": "2%",
+   "threshold": "No threshold",
+   "cat": "tcs"
+  },
+  {
+   "code": 1071,
+   "old": "206C(1)",
+   "new": "394(1) [Table: Sl. No. 3]",
+   "nature": "TCS - sale of timber obtained by any mode other than a forest lease",
+   "rate": "2%",
+   "threshold": "No threshold",
+   "cat": "tcs"
+  },
+  {
+   "code": 1072,
+   "old": "206C(1)",
+   "new": "394(1) [Table: Sl. No. 3]",
+   "nature": "TCS - sale of any other forest produce (not being timber or tendu leaves) obtained under a forest lease",
+   "rate": "2%",
+   "threshold": "No threshold",
+   "cat": "tcs"
+  },
+  {
+   "code": 1073,
+   "old": "206C(1)",
+   "new": "394(1)",
+   "nature": "TCS - sale of scrap",
+   "rate": "2%",
+   "threshold": "No threshold",
+   "cat": "tcs"
+  },
+  {
+   "code": 1074,
+   "old": "206C(1)",
+   "new": "394(1)",
+   "nature": "TCS - sale of minerals: coal, lignite or iron ore",
+   "rate": "2%",
+   "threshold": "No threshold",
+   "cat": "tcs"
+  },
+  {
+   "code": 1075,
+   "old": "206C(1F)",
+   "new": "394(1) [Table: Sl. No. 6.D(a)]",
+   "nature": "TCS - sale of motor vehicle (consideration exceeding threshold limit)",
+   "rate": "1%",
+   "threshold": "Rs 10,00,000 per transaction",
+   "cat": "tcs"
+  },
+  {
+   "code": 1076,
+   "old": "(no old-Act equivalent - new FA-2025/2026-era code)",
+   "new": "394(1) [Table: Sl. No. 6.D(b)]",
+   "nature": "TCS - sale of wrist watch (consideration exceeding threshold limit)",
+   "rate": "1%",
+   "threshold": "Exceeding Rs 10,00,000 (s.394(1) Sl. No. 6 chapeau; item-specific threshold to be notified)",
+   "cat": "tcs"
+  },
+  {
+   "code": 1077,
+   "old": "(no old-Act equivalent - new FA-2025/2026-era code)",
+   "new": "394(1) [Table: Sl. No. 6.D(b)]",
+   "nature": "TCS - sale of art piece such as antiques, painting, sculpture (consideration exceeding threshold limit)",
+   "rate": "1%",
+   "threshold": "Exceeding Rs 10,00,000 (s.394(1) Sl. No. 6 chapeau; item-specific threshold to be notified)",
+   "cat": "tcs"
+  },
+  {
+   "code": 1078,
+   "old": "(no old-Act equivalent - new FA-2025/2026-era code)",
+   "new": "394(1) [Table: Sl. No. 6.D(b)]",
+   "nature": "TCS - sale of collectibles such as coin, stamp (consideration exceeding threshold limit)",
+   "rate": "1%",
+   "threshold": "Exceeding Rs 10,00,000 (s.394(1) Sl. No. 6 chapeau; item-specific threshold to be notified)",
+   "cat": "tcs"
+  },
+  {
+   "code": 1079,
+   "old": "(no old-Act equivalent - new FA-2025/2026-era code)",
+   "new": "394(1) [Table: Sl. No. 6.D(b)]",
+   "nature": "TCS - sale of yacht, rowing boat, canoe, helicopter (consideration exceeding threshold limit)",
+   "rate": "1%",
+   "threshold": "Exceeding Rs 10,00,000 (s.394(1) Sl. No. 6 chapeau; item-specific threshold to be notified)",
+   "cat": "tcs"
+  },
+  {
+   "code": 1080,
+   "old": "(no old-Act equivalent - new FA-2025/2026-era code)",
+   "new": "394(1) [Table: Sl. No. 6.D(b)]",
+   "nature": "TCS - sale of pair of sunglasses (consideration exceeding threshold limit)",
+   "rate": "1%",
+   "threshold": "Exceeding Rs 10,00,000 (s.394(1) Sl. No. 6 chapeau; item-specific threshold to be notified)",
+   "cat": "tcs"
+  },
+  {
+   "code": 1081,
+   "old": "(no old-Act equivalent - new FA-2025/2026-era code)",
+   "new": "394(1) [Table: Sl. No. 6.D(b)]",
+   "nature": "TCS - sale of bag such as handbag, purse (consideration exceeding threshold limit)",
+   "rate": "1%",
+   "threshold": "Exceeding Rs 10,00,000 (s.394(1) Sl. No. 6 chapeau; item-specific threshold to be notified)",
+   "cat": "tcs"
+  },
+  {
+   "code": 1082,
+   "old": "(no old-Act equivalent - new FA-2025/2026-era code)",
+   "new": "394(1) [Table: Sl. No. 6.D(b)]",
+   "nature": "TCS - sale of shoes (consideration exceeding threshold limit)",
+   "rate": "1%",
+   "threshold": "Exceeding Rs 10,00,000 (s.394(1) Sl. No. 6 chapeau; item-specific threshold to be notified)",
+   "cat": "tcs"
+  },
+  {
+   "code": 1083,
+   "old": "(no old-Act equivalent - new FA-2025/2026-era code)",
+   "new": "394(1) [Table: Sl. No. 6.D(b)]",
+   "nature": "TCS - sale of sportswear and equipment such as golf kit, ski-wear (consideration exceeding threshold limit)",
+   "rate": "1%",
+   "threshold": "Exceeding Rs 10,00,000 (s.394(1) Sl. No. 6 chapeau; item-specific threshold to be notified)",
+   "cat": "tcs"
+  },
+  {
+   "code": 1084,
+   "old": "(no old-Act equivalent - new FA-2025/2026-era code)",
+   "new": "394(1) [Table: Sl. No. 6.D(b)]",
+   "nature": "TCS - sale of home theatre system (consideration exceeding threshold limit)",
+   "rate": "1%",
+   "threshold": "Exceeding Rs 10,00,000 (s.394(1) Sl. No. 6 chapeau; item-specific threshold to be notified)",
+   "cat": "tcs"
+  },
+  {
+   "code": 1085,
+   "old": "(no old-Act equivalent - new FA-2025/2026-era code)",
+   "new": "394(1) [Table: Sl. No. 6.D(b)]",
+   "nature": "TCS - sale of horse for racing in race clubs and horse for polo (consideration exceeding threshold limit)",
+   "rate": "1%",
+   "threshold": "Exceeding Rs 10,00,000 (s.394(1) Sl. No. 6 chapeau; item-specific threshold to be notified)",
+   "cat": "tcs"
+  },
+  {
+   "code": 1086,
+   "old": "206C(1G)",
+   "new": "394(1) [Table: Sl. No. 7.D(a)]",
+   "nature": "TCS - LRS remittance for education (loan) or medical treatment",
+   "rate": "2%",
+   "threshold": "Amount exceeding Rs 10,00,000",
+   "cat": "tcs"
+  },
+  {
+   "code": 1087,
+   "old": "206C(1G)",
+   "new": "394(1) [Table: Sl. No. 7.D(b)]",
+   "nature": "TCS - LRS remittance for other purposes",
+   "rate": "20%",
+   "threshold": "Amount exceeding Rs 10,00,000",
+   "cat": "tcs"
+  },
+  {
+   "code": 1088,
+   "old": "206C(1G)",
+   "new": "394(1) [Table: Sl. No. 8.D(a)]",
+   "nature": "TCS - overseas tour programme package, amount/aggregate up to threshold limit",
+   "rate": "2%",
+   "threshold": "No threshold (package amount up to the notified limit)",
+   "cat": "tcs"
+  },
+  {
+   "code": 1089,
+   "old": "206C(1G)",
+   "new": "394(1) [Table: Sl. No. 8.D(b)]",
+   "nature": "TCS - overseas tour programme package, amount/aggregate above threshold limit",
+   "rate": "2%",
+   "threshold": "No threshold (package amount above the notified limit)",
+   "cat": "tcs"
+  },
+  {
+   "code": 1090,
+   "old": "206C(1C)",
+   "new": "394(1) [Table: Sl. No. 9]",
+   "nature": "TCS - use of parking lot for business purposes (excluding mineral-oil mining/quarrying)",
+   "rate": "2%",
+   "threshold": "No threshold",
+   "cat": "tcs"
+  },
+  {
+   "code": 1091,
+   "old": "206C(1C)",
+   "new": "394(1) [Table: Sl. No. 9]",
+   "nature": "TCS - use of toll plaza for business purposes (excluding mineral-oil mining/quarrying)",
+   "rate": "2%",
+   "threshold": "No threshold",
+   "cat": "tcs"
+  },
+  {
+   "code": 1092,
+   "old": "206C(1C)",
+   "new": "394(1) [Table: Sl. No. 9]",
+   "nature": "TCS - use of mine or quarry for business purposes (excluding mining and quarrying of mineral oil, including petroleum and natural gas)",
+   "rate": "2%",
+   "threshold": "No threshold",
+   "cat": "tcs"
+  }
+ ]
+}

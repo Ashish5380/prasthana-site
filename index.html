@@ -193,6 +193,28 @@
   .btn:hover{border-color:var(--text-mid)}
   .btn-primary{background:var(--text-hi);color:#0b0b0c;border-color:var(--text-hi)}
   .btn-primary:hover{background:var(--text);border-color:var(--text)}
+  .btn-lookup{color:var(--green);border-color:rgba(0,225,139,.35)}
+  .btn-lookup:hover{border-color:var(--green);background:rgba(0,225,139,.06)}
+
+  /* ---------- proof strip ---------- */
+  .proof-strip{
+    margin-top:56px;padding:26px 28px;
+    border:1px solid var(--line-strong);border-radius:10px;background:var(--bg-raised);
+  }
+  .proof-title{
+    font-family:var(--mono);font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--text-low);margin-bottom:18px;
+  }
+  .proof-title::before{content:"$ ";color:var(--green)}
+  .proof-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line)}
+  @media(max-width:860px){.proof-grid{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:520px){.proof-grid{grid-template-columns:1fr}}
+  .proof-cell{background:var(--bg-raised);padding:16px 18px}
+  .proof-cell .p-k{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-low)}
+  .proof-cell .p-v{font-size:15px;font-weight:600;color:var(--green);margin-top:6px;font-family:var(--mono)}
+  .proof-cell .p-c{font-size:11.5px;color:var(--text-low);margin-top:6px;line-height:1.55}
+  .proof-foot{margin-top:16px;font-family:var(--mono);font-size:11.5px;color:var(--text-mid)}
+  .proof-foot::before{content:"# ";color:var(--text-low)}
   .hero-note{font-family:var(--mono);font-size:11.5px;color:var(--text-low)}
   .hero-note::before{content:":: ";color:var(--line-strong)}
 
@@ -409,8 +431,9 @@
 
 <header>
   <div class="wrap statusbar">
-    <a class="mark" href="#top"><svg viewBox="0 0 96 96" aria-hidden="true"><g fill="#f4f4f6"><path d="M22.095238095238095 72.57142857142857 36.19047619047619 65.04761904761904Q24.285714285714285 61.61904761904761 24.285714285714285 46.19047619047619V30.95238095238095H18.0V20.285714285714285H78.0V30.95238095238095H69.23809523809524V79.52380952380952H55.904761904761905V63.61904761904761L28.19047619047619 82.0ZM55.904761904761905 30.95238095238095H37.52380952380952V46.0Q37.52380952380952 51.14285714285714 39.42857142857142 53.28571428571428Q41.33333333333333 55.42857142857142 45.23809523809524 55.42857142857142Q48.285714285714285 55.42857142857142 51.04761904761905 54.0Q53.80952380952381 52.57142857142857 55.904761904761905 50.666666666666664Z"/></g><g fill="#00e18b"><rect x="44.5" y="5.5" width="7.0" height="7.0" rx="1.2"/></g></svg>Prasthana</a>
+    <a class="mark" href="#top"><svg viewBox="0 0 96 96" aria-hidden="true"><g fill="#f4f4f6"><path d="M22.095238095238095 72.57142857142857 36.19047619047619 65.04761904761904Q24.285714285714285 61.61904761904761 24.285714285714285 46.19047619047619V30.95238095238095H18.0V20.285714285714285H78.0V30.95238095238095H69.23809523809524V79.52380952380952H55.904761904761905V63.61904761904761L28.19047619047619 82.0ZM55.904761904761905 30.95238095238095H37.52380952380952V46.0Q37.52380952380952 51.14285714285714 39.42857142857142 53.28571428571428Q41.33333333333333 55.42857142857142 45.23809523809524 55.42857142857142Q48.285714285714285 55.42857142857142 51.04761904761905 54.0Q53.80952380952381 52.57142857142857 55.904761904761905 50.666666666666664Z"/></g><g fill="#00e18b"><rect x="44.5" y="5.5" width="7.0" height="7.0" rx="1.2"/></g></svg>Prasthana Labs</a>
     <nav aria-label="Sections">
+      <a href="/lookup.html">lookup</a>
       <a href="#findings">findings</a>
       <a href="#benchmark">benchmark</a>
       <a href="#model">model</a>
@@ -462,7 +485,7 @@
 
       <div class="hero-actions">
         <a class="btn btn-primary" href="#findings">cat findings.log</a>
-        <a class="btn" href="#benchmark">run-eval --ledger</a>
+        <a class="btn btn-lookup" href="/lookup.html">try section-lookup →</a>
         <span class="hero-note">All numbers on this page come from a locked, sha256-verified eval.</span>
       </div>
     </div>
@@ -821,11 +844,42 @@
           <h3>What we are building on it</h3>
           <p class="md"><strong>Karsastra-Tax</strong> — for CA firms handling GST and income-tax notices: upload the
           notice and the client&rsquo;s papers, get a structured first-draft reply citing the correct Act — old or new —
-          with every section, code, and form number machine-verified. A 3–6 hour reply becomes a 30-minute review.</p>
+          with every section, code, and form number machine-verified. A 3&ndash;6 hour reply becomes a 30-minute review.</p>
           <p class="md">Beyond tax, the same engine-plus-verifier pattern is the lab&rsquo;s thesis for Indian
-          compliance domains where the law is precise, high-stakes, and recently rewritten — the places
+          compliance domains where the law is precise, high-stakes, and recently rewritten &mdash; the places
           general chat models are the most confidently wrong.</p>
+          <p class="md" style="margin-top:18px">
+            <a class="btn btn-primary" href="/lookup.html">see it work: section-lookup →</a>
+          </p>
         </div>
+      </div>
+
+      <!-- trust-proof strip: verify-us-ability in 30 seconds -->
+      <div class="proof-strip" role="group" aria-label="Verifiability receipts">
+        <div class="proof-title">don&rsquo;t take our word for it.</div>
+        <div class="proof-grid">
+          <div class="proof-cell">
+            <div class="p-k">lock hash</div>
+            <div class="p-v mono">sha256:14ffaa7d&hellip;</div>
+            <div class="p-c">task set frozen before any model ran</div>
+          </div>
+          <div class="proof-cell">
+            <div class="p-k">answers open</div>
+            <div class="p-v mono">per-model .jsonl</div>
+            <div class="p-c">every model&rsquo;s raw answers ship with the repo</div>
+          </div>
+          <div class="proof-cell">
+            <div class="p-k">grader</div>
+            <div class="p-v mono">&lt;30 min repro</div>
+            <div class="p-c">clone &rarr; run &rarr; same numbers, no setup drama</div>
+          </div>
+          <div class="proof-cell">
+            <div class="p-k">three zeros</div>
+            <div class="p-v mono">0/107 &middot; 0/99 &middot; ~0 map</div>
+            <div class="p-c">frontier models on TDS codes &middot; 4-part compliance &middot; old&rarr;new mapping</div>
+          </div>
+        </div>
+        <div class="proof-foot">&ldquo;download the answer files, run the grader yourself&rdquo; is not a slogan &mdash; it is the product review.</div>
       </div>
     </div>
   </section>
@@ -860,7 +914,7 @@
   <div class="wrap">
     <div class="cols">
       <div>
-        <div class="fm"><svg viewBox="0 0 96 96" aria-hidden="true" style="width:18px;height:18px;vertical-align:-3px;margin-right:8px"><g fill="#f4f4f6"><path d="M22.095238095238095 72.57142857142857 36.19047619047619 65.04761904761904Q24.285714285714285 61.61904761904761 24.285714285714285 46.19047619047619V30.95238095238095H18.0V20.285714285714285H78.0V30.95238095238095H69.23809523809524V79.52380952380952H55.904761904761905V63.61904761904761L28.19047619047619 82.0ZM55.904761904761905 30.95238095238095H37.52380952380952V46.0Q37.52380952380952 51.14285714285714 39.42857142857142 53.28571428571428Q41.33333333333333 55.42857142857142 45.23809523809524 55.42857142857142Q48.285714285714285 55.42857142857142 51.04761904761905 54.0Q53.80952380952381 52.57142857142857 55.904761904761905 50.666666666666664Z"/></g><g fill="#00e18b"><rect x="44.5" y="5.5" width="7.0" height="7.0" rx="1.2"/></g></svg>Prasthana</div>
+        <div class="fm"><svg viewBox="0 0 96 96" aria-hidden="true" style="width:18px;height:18px;vertical-align:-3px;margin-right:8px"><g fill="#f4f4f6"><path d="M22.095238095238095 72.57142857142857 36.19047619047619 65.04761904761904Q24.285714285714285 61.61904761904761 24.285714285714285 46.19047619047619V30.95238095238095H18.0V20.285714285714285H78.0V30.95238095238095H69.23809523809524V79.52380952380952H55.904761904761905V63.61904761904761L28.19047619047619 82.0ZM55.904761904761905 30.95238095238095H37.52380952380952V46.0Q37.52380952380952 51.14285714285714 39.42857142857142 53.28571428571428Q41.33333333333333 55.42857142857142 45.23809523809524 55.42857142857142Q48.285714285714285 55.42857142857142 51.04761904761905 54.0Q53.80952380952381 52.57142857142857 55.904761904761905 50.666666666666664Z"/></g><g fill="#00e18b"><rect x="44.5" y="5.5" width="7.0" height="7.0" rx="1.2"/></g></svg>Prasthana Labs</div>
         <p>Applied AI lab for India&rsquo;s compliance intelligence.<br>First family: Karsastra — the AI tax-notice reply engine.</p>
       </div>
       <div>
