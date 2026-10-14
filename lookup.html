@@ -200,7 +200,7 @@ fetch('lookup-data.json').then(r=>r.json()).then(DATA=>{
       '<div class="hit">'+
       (h.os ? '<div class="head"><span class="os">s.'+esc(h.os)+'</span><span class="arrow">──▶</span><span class="ns">s.'+esc(h.ns)+'</span><span class="topic">'+esc(h.topic||'')+'</span></div>' :
               '<div class="head"><span class="ns">'+esc(h.ns)+'</span><span class="topic">'+esc(h.topic||'')+'</span></div>')+
-      (h.note? '<div class="note">'+esc(h.note)+'</div>':'')+
+      (h.note? '<div class="note">'+(h.html? h.note : esc(h.note))+'</div>':'')+
       (h.rate||h.thr? '<div class="meta">rate: <b style="color:var(--text-mid)">'+esc(h.rate||'—')+'</b> · threshold: '+esc(h.thr||'—')+'</div>':'')+
       '<div class="meta">verified <span class="ver">'+esc(h.ret||'')+'</span> · confidence <span class="ver">'+esc(h.conf||'high')+'</span>'+
       (h.src? ' · <a href="'+h.src+'" target="_blank" rel="noopener">source</a>':'')+'</div>'+
@@ -212,16 +212,34 @@ fetch('lookup-data.json').then(r=>r.json()).then(DATA=>{
     q = q.trim(); if(!q) return;
     const nq = norm(q);
     let hits = [];
-    // 1. code NNNN
+    // 0. exact old-section match FIRST (handles 194C, 192A, 193-194T style tokens)
+    const secTokens = q.toUpperCase().match(/\d{2,3}[A-Z](?=[A-Z]|\b)|\d{2,3}-\d{2,3}[A-Z]?/g) || [];
+    secTokens.forEach(t=>{
+      secs.forEach(s=>{ if(s.o.toUpperCase().includes(t)) hits.push({os:s.o, ns:s.n, topic:s.t, note:s.note, ret:s.ret, conf:s.conf}); });
+    });
+    // 1. payment code "code 1017" or bare 1017
     const cm = q.match(/\b(?:code\s*)?(\d{4})\b/i);
-    if(cm){ const code = codes.find(c=>String(c.code)===cm[1]); if(code) hits.push({ns:'code '+code.code, topic:code.nature, os:code.old, ns2:null, note:'now under s.'+code.new+' (2025 Act).', rate:code.rate, thr:code.threshold, ret:'Oct 2026', conf:'high'}); }
-    // 2. section
-    const sm = q.match(/\b(\d{2,3}[A-Z]{0,2})\b/);
-    if(sm){ secs.forEach(s=>{ if(norm(s.o).includes(norm(sm[1]))||s.o===sm[1]) hits.push({os:s.o, ns:s.n, topic:s.t, note:s.note, ret:s.ret, conf:s.conf}); }); }
+    if(cm){ const code = codes.find(c=>String(c.code)===cm[1]); if(code) hits.push({ns:'code '+code.code, topic:code.nature, os:code.old, note:'now under s.'+code.new+' (2025 Act).', rate:code.rate, thr:code.threshold, ret:'Oct 2026', conf:'high'}); }
+    // 2. plain numeric section (192, 80C-classes)
+    const sm = q.match(/^\s*(\d{2,3}[A-Z]{0,2})\s*$|\bs.(\d{2,3})\b/i);
+    const secNum = sm && (sm[1]||sm[2]);
+    if(secNum){ secs.forEach(s=>{ if(s.o===secNum || s.o.startsWith(secNum)) hits.push({os:s.o, ns:s.n, topic:s.t, note:s.note, ret:s.ret, conf:s.conf}); }); }
     // 3. topic fuzzy
     if(!hits.length){
       secs.forEach(s=>{ if(norm(s.o+' '+s.t+' '+s.note).includes(nq)) hits.push({os:s.o,ns:s.n,topic:s.t,note:s.note,ret:s.ret,conf:s.conf}); });
-      codes.slice(0,200).forEach(c=>{ if(hits.length<5 && norm(c.nature).includes(nq)) hits.push({ns:'code '+c.code,topic:c.nature,os:c.old,note:'under s.'+c.new+' (2025 Act).',rate:c.rate,thr:c.threshold,ret:'Oct 2026',conf:c.conf||'high'}); });
+      const codesForSec = {};
+      codes.forEach(c=>{ (codesForSec[c.old] = codesForSec[c.old]||[]).push(c); });
+      if(secTokens.length){
+        secTokens.forEach(t=>{
+          const grp = codesForSec[t];
+          if(grp){
+            const secRow = secs.find(s=>(s.o||'').toUpperCase().includes(t));
+            hits.push({os:t, ns: secRow? secRow.n : grp[0].new.split('[')[0].trim(), topic:'TDS payments under old s.'+t,
+              note: grp.map(g=>'<b>code '+g.code+'</b> &mdash; '+g.nature+' &rarr; s.'+g.new).join('<br>'), ret:'Oct 2026', conf:'high', html:true});
+          }
+        });
+      }
+      codes.forEach(c=>{ if(hits.length<8 && norm(c.nature).includes(nq)) hits.push({ns:'code '+c.code,topic:c.nature,os:c.old,note:'under s.'+c.new+' (2025 Act).',rate:c.rate,thr:c.threshold,ret:'Oct 2026',conf:c.conf||'high'}); });
     }
     // dedupe by os+ns
     const seen = new Set(); hits = hits.filter(h=>{const k=(h.os||'')+(h.ns||''); if(seen.has(k)) return false; seen.add(k); return true;});
