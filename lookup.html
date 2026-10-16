@@ -158,8 +158,9 @@
   <p>This lookup is the <em>proven core</em> of our notice-reply engine, not the product itself. The product is the
   drafting workflow — a 3–6 hour notice reply becomes a 30-minute review because every section, payment code and
   form number in the draft is machine-verified against these same tables before a professional sees it.</p>
-  <p class="t-dim">In our locked 785-task eval (sha256 <code>14ffaa7d…</code>), the best frontier model scored
-  <b>30.2%</b> strict accuracy; on the 4-part compliance task a notice reply actually needs, every model we could
+  <p class="t-dim">In our locked 785-task eval (sha256 <code>14ffaa7d…</code>), the best general-purpose model scored
+  <b>30.2%</b> strict accuracy (our own 4B fine-tune: 89.4%); on the 4-part compliance task a notice reply actually needs, every
+  general-purpose model we could
   run scored <b>0</b>. The deterministic engine answers the same code-lookup tasks at 100%. Full method + per-model
   answer files: <a class="link" href="/#benchmark">itact-785</a>.</p>
 </div>

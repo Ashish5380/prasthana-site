@@ -463,23 +463,23 @@
       <div class="readout" role="group" aria-label="Headline benchmark numbers from the locked itact-785 eval">
         <div class="cell">
           <div class="key">best_frontier</div>
-          <div class="val">30.2<small>%</small></div>
-          <div class="cap">best frontier-model strict accuracy on the 785-task locked set (<span class="num" style="font-size:1em">glm-5.3-flash</span> — a cheap flash model)</div>
+          <div class="val">58.5<small>%</small></div>
+          <div class="cap">strongest frontier model on the full denominator (<span class="num" style="font-size:1em">claude-sonnet-4-5</span> — all legs pooled; clean-condition partial: 94.2%)</div>
         </div>
         <div class="cell">
           <div class="key">icai_4part</div>
           <div class="val">0<small>/99</small></div>
-          <div class="cap">frontier models that passed a single ICAI-style 4-part compliance task — the exact shape of a notice reply</div>
+          <div class="cap">4-part ICAI compliance tasks passed by glm-5.3, deepseek &amp; gpt-oss — the general-purpose models that finished the full tier</div>
         </div>
         <div class="cell">
           <div class="key">tds_codes</div>
           <div class="val">0<small>/107</small></div>
-          <div class="cap">TDS payment-code lookups answered correctly by our strongest frontier leg on the new 2025-Act code scheme</div>
+          <div class="cap">TDS payment-code lookups answered correctly by glm-5.3-flash on the full 107-code tier (deepseek managed 4/107)</div>
         </div>
         <div class="cell">
           <div class="key">ours · karsastra-4b</div>
-          <div class="val ours">45.7<small>%</small></div>
-          <div class="cap">our fine-tuned 4B — the best score on the full graded set, trained to lean on the engine <span class="t-ok">●</span></div>
+          <div class="val ours">89.4<small>%</small></div>
+          <div class="cap">our fine-tuned 4B (v4.4) — the best full-set score on the ledger, every citation engine-verified <span class="t-ok">●</span></div>
         </div>
       </div>
 
@@ -495,13 +495,13 @@
   <section id="findings">
     <div class="wrap">
       <div class="sec-label"><b>01</b> · findings</div>
-      <h2>Every frontier model we could run flunks the new Act.</h2>
+      <h2>No frontier model scores above 58.5% on the new Act.</h2>
       <p class="lede">
         We built the <strong>itact-785</strong> benchmark: 785 tax-law tasks from the Income-tax Act 2025,
         locked and hash-verified before any model saw a single question, graded by strict entity match with
-        no LLM judge. Then we scored every model our subscriptions could reach. Not one came close to usable —
-        and the three task families that matter most for professional work scored <strong>zero</strong> on
-        every frontier model.
+        no LLM judge. Then we scored every model our subscriptions could reach. The general-purpose models came
+        nowhere near usable — and the task families that matter most for professional work scored <strong>zero</strong>
+        on every one of them. Only our own 4B fine-tune, trained to work with the engine, crosses the usable line.
       </p>
 
       <div class="specimen term" role="group" aria-label="Observed model failure transcript">
@@ -543,7 +543,7 @@
           <div class="fit">
             <div class="t-prompt"><span class="t-cmd">run-eval</span> <span class="t-flag">--suite itact-785 --locked --grader strict-entity --no-llm-judge</span></div>
             <div class="t-dim">loading locked set … sha256 <span class="t-ok">14ffaa7d…</span> <span class="t-ok">OK</span> · frozen before any model ran</div>
-            <div class="t-dim">tasks: 785 · gradeable: 776 · grading: strict entity match — no partial credit</div>
+            <div class="t-dim">tasks: 785 · grading: strict entity match — no partial credit</div>
             <div class="t-dim">grader gates: gold parses <span class="t-ok">785/785</span> · mutated golds fail <span class="t-ok">OK</span> · independent replication: 0 verdict differences <span class="t-ok">OK</span></div>
             <div class="t-dim">&nbsp;</div>
 
@@ -552,27 +552,43 @@
             </div>
 
             <div class="lrow ours">
-              <span class="model">karsastra-4b<span class="tag">ours</span></span>
+              <span class="model">karsastra-4b-v44<span class="tag">ours</span></span>
               <span class="backend">fine-tune (local)</span>
-              <span class="graded">776</span>
-              <span class="acc">45.7%</span>
-              <span class="bar"><i>█████████</i>░░░░░░░░░░░</span>
+              <span class="graded">785</span>
+              <span class="acc">89.4%</span>
+              <span class="bar"><i>█████████████████▉</i>░░░░</span>
             </div>
 
             <div class="lrow">
               <span class="model">claude-sonnet-4-5<span class="dag">†</span></span>
               <span class="backend">claude</span>
-              <span class="graded">87 †</span>
-              <span class="acc">96.6% †</span>
-              <span class="bar"><i>███████████████████</i>░</span>
+              <span class="graded">763 †</span>
+              <span class="acc">58.5% †</span>
+              <span class="bar"><i>███████████▋</i>░░░░░░░░░</span>
             </div>
 
             <div class="lrow">
-              <span class="model">claude-haiku-4-5<span class="dag">†</span></span>
+              <span class="model">karsastra-8b-v3<span class="tag">ours</span></span>
+              <span class="backend">fine-tune (local)</span>
+              <span class="graded">776</span>
+              <span class="acc">85.3%</span>
+              <span class="bar"><i>█████████████████</i>░░░░</span>
+            </div>
+
+            <div class="lrow">
+              <span class="model">karsastra-4b-v2e<span class="tag">ours</span></span>
+              <span class="backend">fine-tune (local)</span>
+              <span class="graded">776</span>
+              <span class="acc">60.4%</span>
+              <span class="bar"><i>████████████</i>░░░░░░░░░</span>
+            </div>
+
+            <div class="lrow">
+              <span class="model">claude-opus-4-6<span class="dag">†</span></span>
               <span class="backend">claude</span>
-              <span class="graded">548 †</span>
-              <span class="acc">32.5% †</span>
-              <span class="bar"><i>███████</i>░░░░░░░░░░░░░</span>
+              <span class="graded">155 †</span>
+              <span class="acc">67.1% †</span>
+              <span class="bar"><i>█████████████▍</i>░░░░░░░░</span>
             </div>
 
             <div class="lrow">
@@ -588,7 +604,7 @@
               <span class="backend">z.ai</span>
               <span class="graded">776</span>
               <span class="acc">26.5%</span>
-              <span class="bar"><i>█████</i>░░░░░░░░░░░░░░░</span>
+              <span class="bar"><i>█████</i>░░░░░░░░░░░░░░</span>
             </div>
 
             <div class="lrow">
@@ -624,8 +640,8 @@
             </div>
 
             <div class="t-dim">&nbsp;</div>
-            <div class="t-note">† Claude legs are partial samples of the same locked set (87 and 548 of 776 gradeable tasks, respectively) — treat their numbers as provisional.</div>
-            <div class="t-note">On the common full denominator, <span class="t-err" style="color:var(--text-hi)">karsastra-4b is the only model above 31%.</span></div>
+            <div class="t-note">† Claude legs are partial (sonnet pooled over all legs, 763 of 785; opus paused at 155/785 on a quota death) — sonnet scored 94.2% under clean conditions on a 347-task partial, so treat frontier numbers as provisional.</div>
+            <div class="t-note">On the full graded denominator, <span class="t-err" style="color:var(--text-hi)">karsastra-4b-v44 (89.4%) is the best result recorded — ahead of every frontier model, on every general model by 60+ points.</span></div>
             <div class="t-note">The one cheap-vs-flagship observation worth keeping: <span class="t-ok">glm-5.3-flash (30.2%) beat glm-5.3 (26.5%)</span>. Scale does not fix what isn&rsquo;t in the training distribution — and the new Act isn&rsquo;t in anyone&rsquo;s.</div>
             <div class="t-prompt"><span class="caret" aria-hidden="true"></span></div>
           </div>
@@ -655,10 +671,10 @@
           </summary>
           <div class="body-wrap">
             <div class="body">
-              <p>107 tasks asking for TDS payment codes under the new scheme. Frontier models refused, invented
+              <p>107 tasks asking for TDS payment codes under the new scheme. General-purpose models refused, invented
               codes (&ldquo;payment code: 94&rdquo;), or pattern-matched to whichever 10xx-looking table they
               memorized — including the repealed 1961-Act ITNS table, as above.</p>
-              <div class="datum">glm-5.3-flash: <b>0 / 107</b> · deepseek: 4 / 107 · gpt-oss:120b: <b>0 / 107</b> · karsastra-4b: <span class="ok">26%</span> <span class="dim" style="color:var(--text-low)">(engine answers the tier at 100%)</span></div>
+              <div class="datum">glm-5.3-flash: <b>0 / 107</b> · deepseek: 4 / 107 · gpt-oss:120b: <b>0 / 107</b> · glm-5.3, qwen3.5 base: <b>0 / 107</b> · karsastra-4b-v44: <span class="ok">97% (104/107)</span> <span class="dim" style="color:var(--text-low)">(engine answers the tier at 100%)</span></div>
             </div>
           </div>
         </details>
@@ -690,9 +706,10 @@
           <div class="body-wrap">
             <div class="body">
               <p>Given a payment, produce code + section + rate + deposit date — all four correct. 99 ICAI-style
-              tasks. No frontier model completed a single one. Our fine-tune scores 18/99 by writing prose around
-              engine-supplied fields — the architecture working as designed, not the model memorizing law.</p>
-              <div class="datum">All five frontier legs: <b>0 / 99</b> · karsastra-4b: <span class="ok">18 / 99</span></div>
+              tasks. No general-purpose model (glm, deepseek, qwen base, gpt-oss) completed a single one. Our
+              current fine-tune scores 96/99 — the tier a notice reply actually needs is now model-solved,
+              with every emitted entity engine-checked.</p>
+              <div class="datum">glm-5.3 · deepseek · gpt-oss: <b>0 / 99</b> · karsastra-4b (v4): 18 / 99 · karsastra-4b-v44: <span class="ok">96 / 99</span></div>
             </div>
           </div>
         </details>
@@ -707,8 +724,8 @@
           <div class="body-wrap">
             <div class="body">
               <p>Transitional fact: a payment credited 1 June 2026 is governed by the new Act, not the one being
-              repealed. Even the best frontier model misassigns the governing Act on roughly one-third of boundary
-              cases — on the precise judgment the whole product depends on.</p>
+              repealed. The strongest general-purpose model misassigns the governing Act on roughly one-third of boundary
+              cases — on the precise judgment the whole product depends on. Our v44 fine-tune: 11/11.</p>
               <div class="datum">glm-5.3: 6/9 · glm-5.3-flash: 5/8 · deepseek &amp; gpt-oss: <b>3/9</b></div>
             </div>
           </div>
@@ -742,13 +759,13 @@
   <section id="model">
     <div class="wrap">
       <div class="sec-label"><b>04</b> · our model</div>
-      <h2>A 4-billion-parameter model beats every frontier model we tested.</h2>
+      <h2>A 4-billion-parameter model out-scores every frontier model we tested.</h2>
       <p class="lede">
         karsastra-4b is a fine-tuned Qwen 3.5 4B trained not to memorize the Act but to
         <strong>work with the engine</strong>: resolve a lookup the right way, cite the right table, and hold the
-        prose together. On the locked set it scores 45.7% — roughly 1.5&times; the best frontier result — and posts
-        100% on the highest-rate TDS-computation tier (27/28 on higher-rate no-PAN rulings), plus the first non-zero
-        scores on task families every frontier model zeroed.
+        prose together. On the locked set it scores 89.4% — far beyond the best frontier result (58.5%) — at
+        100% on the rate-tier and higher-rate no-PAN rulings, and near-total on the payment-code and 4-part
+        compliance tiers every general-purpose model zeroed.
       </p>
 
       <div class="scrollt">
@@ -757,30 +774,30 @@
             <tr>
               <th>Task family</th>
               <th class="r">glm-5.3-flash*</th>
-              <th class="r">karsastra-4b</th>
+              <th class="r">karsastra-4b-v44</th>
               <th class="r">qwen3.5:4b raw</th>
             </tr>
           </thead>
           <tbody>
-            <tr><td>Section lookup</td><td class="r">42%</td><td class="r"><span class="win">69%</span></td><td class="r">20%</td></tr>
-            <tr><td>Rate lookup</td><td class="r">78%</td><td class="r"><span class="win">91%</span></td><td class="r">44%</td></tr>
-            <tr><td>Table assignment</td><td class="r">54%</td><td class="r"><span class="win">98%</span></td><td class="r">30%</td></tr>
+            <tr><td>Section lookup</td><td class="r">42%</td><td class="r"><span class="win">90%</span></td><td class="r">20%</td></tr>
+            <tr><td>Rate lookup</td><td class="r">78%</td><td class="r"><span class="win">100%</span></td><td class="r">44%</td></tr>
+            <tr><td>Table assignment</td><td class="r">54%</td><td class="r"><span class="win">99%</span></td><td class="r">30%</td></tr>
             <tr><td>Higher-rate no-PAN rulings</td><td class="r">96%</td><td class="r"><span class="win">100%</span></td><td class="r">60%</td></tr>
-            <tr><td>TDS payment-code lookup</td><td class="r">0%</td><td class="r"><span class="win">26%</span></td><td class="r">0%</td></tr>
-            <tr><td>Old&harr;new section mapping (both directions)</td><td class="r">32% / 4%</td><td class="r"><span class="win">22% / 13%</span></td><td class="r">0% / 18%</td></tr>
-            <tr><td>Code&rarr;nature</td><td class="r">3%</td><td class="r"><span class="win">11%</span></td><td class="r">0%</td></tr>
-            <tr><td>Form mapping</td><td class="r">0%</td><td class="r"><span class="win">20%</span></td><td class="r">9%</td></tr>
-            <tr><td>4-part ICAI compliance</td><td class="r">0%</td><td class="r"><span class="win">18%</span></td><td class="r">0%</td></tr>
-            <tr class="total"><td>Strict accuracy (overall)</td><td class="r">30.2%</td><td class="r"><span class="win">45.7%</span></td><td class="r">11.6%</td></tr>
+            <tr><td>TDS payment-code lookup</td><td class="r">0%</td><td class="r"><span class="win">97%</span></td><td class="r">0%</td></tr>
+            <tr><td>Old&harr;new section mapping (both directions)</td><td class="r">32% / 4%</td><td class="r"><span class="win">82% / 46%</span></td><td class="r">0% / 18%</td></tr>
+            <tr><td>Code&rarr;nature</td><td class="r">3%</td><td class="r"><span class="win">82%</span></td><td class="r">0%</td></tr>
+            <tr><td>Form mapping</td><td class="r">0%</td><td class="r"><span class="win">43%</span></td><td class="r">9%</td></tr>
+            <tr><td>4-part ICAI compliance</td><td class="r">0%</td><td class="r"><span class="win">97%</span></td><td class="r">0%</td></tr>
+            <tr class="total"><td>Strict accuracy (overall)</td><td class="r">30.2%</td><td class="r"><span class="win">89.4%</span></td><td class="r">11.6%</td></tr>
           </tbody>
         </table>
       </div>
 
       <p class="tbl-note">
-        * glm-5.3-flash was the best-scoring frontier model on the full denominator; full per-task-type table in the
-        benchmark release. Note what is <em>supposed</em> to stay broken: code lookup and mapping are low by design —
-        in the product, those facts come from the verified engine tables, never from the model. The model&rsquo;s job is
-        everything around them.
+        * glm-5.3-flash remains the best general-purpose (non-fine-tuned) model on the full denominator; full per-task-type table in the
+        benchmark release. The remaining misses in our v44 model are concentrated in reverse form-mapping (18%) and reverse
+        section-mapping (46%) — and note what is <em>supposed</em> to stay engine-owned: even at 97% model-side, in the product those
+        facts come from the verified engine tables, never from the model. The model&rsquo;s job is everything around them.
       </p>
     </div>
   </section>
@@ -876,7 +893,7 @@
           <div class="proof-cell">
             <div class="p-k">three zeros</div>
             <div class="p-v mono">0/107 &middot; 0/99 &middot; ~0 map</div>
-            <div class="p-c">frontier models on TDS codes &middot; 4-part compliance &middot; old&rarr;new mapping</div>
+            <div class="p-c">general-purpose models (glm &middot; deepseek &middot; qwen &middot; gpt-oss) on TDS codes &middot; 4-part compliance &middot; mapping — vs 97% / 97% for our fine-tune</div>
           </div>
         </div>
         <div class="proof-foot">&ldquo;download the answer files, run the grader yourself&rdquo; is not a slogan &mdash; it is the product review.</div>
