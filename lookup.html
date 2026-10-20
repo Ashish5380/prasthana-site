@@ -178,7 +178,7 @@
 <footer>
   <div class="wrap">
     <b>Prasthana Labs</b> — applied AI lab for India's compliance intelligence · Bengaluru–Ahmedabad<br>
-    Tables verified against Gazette-notified sources; every row carries its provenance. Corrections: <a href="mailto:hello@prasthana.in">hello@prasthana.in</a><br>
+    Tables verified against Gazette-notified sources; every row carries its provenance. Corrections: <a href="mailto:query@prasthana.in">query@prasthana.in</a><br>
     <span class="t-dim">© 2026 · exit 0</span>
   </div>
 </footer>
@@ -194,7 +194,7 @@ fetch('lookup-data.json').then(r=>r.json()).then(DATA=>{
   function render(hits){
     out.classList.add('show');
     if(!hits.length){
-      out.innerHTML = '<div class="noresult">no verified mapping for <b>'+esc(q)+'</b> yet. We ship updates weekly — write to <a style="text-decoration:underline;color:var(--text-mid)" href="mailto:hello@prasthana.in">hello@prasthana.in</a> if this one matters to you.</div>';
+      out.innerHTML = '<div class="noresult">no verified mapping for <b>'+esc(q)+'</b> yet. We ship updates weekly — write to <a style="text-decoration:underline;color:var(--text-mid)" href="mailto:query@prasthana.in">query@prasthana.in</a> if this one matters to you.</div>';
       return;
     }
     out.innerHTML = hits.map(h=>(
