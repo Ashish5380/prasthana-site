@@ -77,8 +77,8 @@
    "n": "428(c) [see note re 446]",
    "t": "Penalty/fee for failure to get accounts audited",
    "note": "FY 2025-26 (old Act): s.271B discretionary penalty - lower of 0.5% of turnover and Rs 1.5 lakh, with s.273B reasonable-cause defence. From TY 2026-27 (new Act): graded FEE, no reasonable-cause defence - Rs 75,000 (delay up to 1 month) / Rs 1,50,000 (beyond 1 month) under s.428(c).",
-   "conf": "medium",
-   "ret": "2026-10-05"
+   "conf": "high",
+   "ret": "2026-10-20"
   },
   {
    "o": "273B",
@@ -92,9 +92,9 @@
    "o": "269SS",
    "n": "185",
    "t": "Cash loans/deposits: no acceptance of Rs 20,000 or more in cash",
-   "note": "Penalty (old 271D) -> s.450: 100% of amount.",
+   "note": "Penalty (old 271D) -> s.450: 100% of amount. s.185(4)/s.188(4): the Rs 20,000 limit becomes Rs 2,00,000 for loans/deposits of members of primary agricultural credit societies / primary co-operative agricultural and rural development banks.",
    "conf": "high",
-   "ret": "2026-10-05"
+   "ret": "2026-10-20"
   },
   {
    "o": "269ST",
@@ -102,15 +102,15 @@
    "t": "No cash receipt of Rs 2,00,000 or more (per day/single transaction/one event)",
    "note": "Penalty (old 271DA) -> s.451: 100% of amount. Corroborated by three independent sources; IncorpX's 's.221' mapping is contradicted and flagged in conflicts.md.",
    "conf": "high",
-   "ret": "2026-10-05"
+   "ret": "2026-10-20"
   },
   {
    "o": "269T",
    "n": "188",
    "t": "No cash repayment of loan/deposit of Rs 20,000 or more",
-   "note": "Penalty (old 271E) -> s.453: 100% of amount.",
+   "note": "Penalty (old 271E) -> s.453: 100% of amount. s.185(4)/s.188(4): the Rs 20,000 limit becomes Rs 2,00,000 for loans/deposits of members of primary agricultural credit societies / primary co-operative agricultural and rural development banks.",
    "conf": "high",
-   "ret": "2026-10-05"
+   "ret": "2026-10-20"
   },
   {
    "o": "40A(3)",
@@ -118,7 +118,7 @@
    "t": "Disallowance of business expenditure paid in cash above Rs 10,000 (per day per person)",
    "note": "100% disallowance retained. Exceptions (old Rule 6DD) continue. IncorpX's 's.34(3)' mapping contradicted - see conflicts.md.",
    "conf": "high",
-   "ret": "2026-10-05"
+   "ret": "2026-10-20"
   },
   {
    "o": "40A(3A)",
@@ -126,15 +126,15 @@
    "t": "Disallowance for payments in subsequent year",
    "note": "",
    "conf": "high",
-   "ret": "2026-10-05"
+   "ret": "2026-10-20"
   },
   {
    "o": "40A(3) goods-carrier exception",
    "n": "36(6)",
    "t": "Rs 35,000 cash-payment limit for goods carriages (transporters)",
-   "note": "",
-   "conf": "medium",
-   "ret": "2026-10-05"
+   "note": "Bare Act s.36(6): figures Rs 10,000 read as Rs 35,000 for payments for plying, hiring or leasing goods carriages.",
+   "conf": "high",
+   "ret": "2026-10-20"
   },
   {
    "o": "40(a)(ia)",
